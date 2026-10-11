@@ -1,5 +1,7 @@
 # 🛡️ Resumo das Proteções Implementadas
 
+> **Relatório histórico, sem nova auditoria.** As afirmações abaixo precisam ser confrontadas com o código e a configuração atuais. Consulte [middleware.ts](middleware.ts), [next.config.mjs](next.config.mjs), [vercel.json](vercel.json) e a [documentação técnica](DOCUMENTATION.md).
+
 ## ✅ **Proteções Ativas**
 
 ### **1. Variáveis de Ambiente**

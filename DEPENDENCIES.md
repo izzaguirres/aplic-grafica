@@ -1,5 +1,7 @@
 # 📦 Dependências do Projeto - Aplic Gráfica Site
 
+> **Registro histórico.** As versões e os comandos abaixo não são o inventário vigente. Consulte [package.json](package.json), [package-lock.json](package-lock.json) e o [README](README.md) antes de instalar ou atualizar bibliotecas.
+
 ## 📋 Índice
 
 - [Visão Geral](#visão-geral)

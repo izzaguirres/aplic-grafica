@@ -1,5 +1,7 @@
 # Status do Projeto - Aplic Gráfica
 
+> **Snapshot histórico.** Os resultados abaixo pertencem a uma versão anterior e não comprovam o estado da branch atual. O formulário de contato foi desativado. Consulte o [README](README.md), a [documentação técnica](DOCUMENTATION.md) e o deployment do commit que está avaliando.
+
 ## ✅ **Pronto para Deploy**
 
 ### **Verificações de Qualidade**

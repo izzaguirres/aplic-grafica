@@ -1,77 +1,92 @@
-# Aplic Gráfica - Premium Web Experience
+# Aplic Gráfica
 
-Este projeto é uma plataforma web moderna, desenvolvida com foco total em **conversão via WhatsApp** e **performance**. Não é apenas um site institucional, mas um "Hub de Vendas" para a gráfica líder em Florianópolis.
+**Gráfica & Marketing · Florianópolis, SC**
 
-## 🚀 Tecnologias e Stack
+Site comercial da Aplic, com catálogo de materiais gráficos, opções de tamanho e quantidade, preços por variação e orçamento pelo WhatsApp. O atendimento é online, com entrega e retirada combinadas.
 
-*   **Framework:** Next.js 14 (App Router)
-*   **Linguagem:** TypeScript
-*   **Estilização:** Tailwind CSS + Shadcn/UI
-*   **Tipografia:** Google Sans Flex (Variable Font) localmente hospedada.
-*   **Animações:** CSS Nativo (Scroll Reveal) + Micro-interações.
+[Visitar o site](https://aplicgrafica.com.br) · [Explorar o catálogo](https://aplicgrafica.com.br/produtos) · [Documentação técnica](DOCUMENTATION.md)
 
-## 💎 Design System: "Tech & Premium"
+## O projeto
 
-O site foge do padrão "SaaS Genérico" e adota uma estética de estúdio de design, transmitindo solidez e modernidade.
+- Catálogo com busca, famílias de produtos e seleção de variações.
+- Páginas de cartões, panfletos, banners, etiquetas, crachás, pastas e blocos.
+- Orçamento com produto, quantidade e preço selecionados na mensagem do WhatsApp.
+- Páginas institucionais, metadados, dados estruturados, sitemap e robots.
+- Atribuição de origem e eventos de clique integrados ao Google Tag Manager.
 
-*   **Paleta de Cores:**
-    *   **Shark (#28282D):** Fundo escuro e textos principais. Sofisticação.
-    *   **Canary (#E6FF50):** Acentos, CTAs e pontos de luz. Energia e Modernidade.
-    *   **Iron (#CDD2D7):** Estrutura, bordas e detalhes técnicos.
-*   **Conceitos Visuais:**
-    *   *Glassmorphism* (Vidro) sutil.
-    *   Cards com bordas arredondadas agressivas (estilo iOS/App).
-    *   Animações de entrada (Scroll Reveal) cinematográficas.
-    *   "WhatsApp First": Toda interação leva para uma conversa real.
+As condições finais de produção, arte e entrega são confirmadas no atendimento. Um clique no WhatsApp não comprova conversa, orçamento ou venda.
 
-## ⚡ Funcionalidades de Venda
+## Stack
 
-1.  **Catálogo Inteligente:**
-    *   Busca em tempo real.
-    *   Filtros por categoria em formato "Pills" (cápsulas).
-    *   Feedback instantâneo de "Nenhum resultado encontrado".
-2.  **Calculadora de Preço (Client-Side):**
-    *   Nos cards de produto, o cliente seleciona a quantidade (ex: 1000 ou 5000 un.) e o preço atualiza na hora.
-    *   O botão do WhatsApp já gera uma mensagem personalizada com o pedido exato: *"Olá! Quero 5000 Panfletos..."*.
-3.  **Hub de Contato:**
-    *   Substituição do formulário de e-mail (lento) por um painel de triagem via WhatsApp (rápido).
-    *   Canais específicos para: Orçamento, Arquivos, Status e Dúvidas.
+| Camada | Tecnologia |
+|---|---|
+| Aplicação | Next.js 16 · App Router · React 19 · TypeScript |
+| Interface | CSS Modules · Tailwind CSS 3 · Radix UI / shadcn/ui |
+| Tipografia | Google Sans Flex hospedada localmente |
+| Hospedagem | Vercel · Node.js 22 |
+| Mensuração | Google Tag Manager · Atlas/Pixerun · mrkr via GTM · Vercel Analytics |
 
-## 🔍 SEO (Search Engine Optimization)
+As versões exatas estão em [package-lock.json](package-lock.json). O repositório usa npm.
 
-O site foi construído para dominar o Google Local em Florianópolis.
+## Desenvolvimento local
 
-*   **JSON-LD (Dados Estruturados):** Schema de `LocalBusiness` injetado, com endereço, horários e geo-coordenadas.
-*   **Metadados:** Títulos e descrições otimizados para cauda longa ("Gráfica Rápida Florianópolis").
-*   **Sitemap & Robots:** Gerados automaticamente.
-*   **Manifest:** Configurado para PWA (Progressive Web App).
+Use Node.js 22 e npm. Para um clone novo:
 
-## 🛡️ Segurança
+```bash
+git clone https://github.com/izzaguirres/aplic-grafica.git
+cd aplic-grafica
+npm ci
+cp env.example .env.local
+npm run dev -- --webpack
+```
 
-O projeto segue as melhores práticas de segurança web:
+Acesse [localhost:3000](http://localhost:3000). No workspace clawd, execute o preflight local antes de iniciar qualquer servidor: `/Users/izzaguirres/clawd/scripts/dev-server-preflight.sh <caminho-do-projeto>`.
 
-*   **Headers de Segurança:** Configurados no `middleware.ts` e `next.config.mjs` (HSTS, X-Frame-Options, X-XSS-Protection).
-*   **Content Security Policy (CSP):** Restritiva para evitar injeção de scripts maliciosos.
-*   **Bloqueio de Rotas:** Arquivos sensíveis (`.env`, `.git`) são bloqueados pelo middleware.
-*   **Sanitização:** Como não há banco de dados nem inputs complexos de formulário, a superfície de ataque é mínima.
+O exemplo de ambiente inclui apenas variáveis lidas pela aplicação:
 
-## 🛠️ Como Rodar Localmente
+- `NEXT_PUBLIC_SITE_URL`: origem canônica usada nos metadados; o padrão é o domínio oficial.
+- `NEXT_PUBLIC_GTM_ID`: contêiner do GTM; deixe vazio no desenvolvimento para não carregar o contêiner de produção.
 
-1.  Instale as dependências:
-    ```bash
-    npm install
-    # ou
-    pnpm install
-    ```
+A variável `VERCEL_ENV` é fornecida pela Vercel. Ela identifica a produção para a entrega do mrkr via GTM. O Atlas/Pixerun possui carregador próprio no layout; omitir o GTM não desativa todas as ferramentas de medição. Consulte o [contrato de tracking](docs/tracking-setup.md) antes de fazer QA com cliques reais.
 
-2.  Rode o servidor de desenvolvimento:
-    ```bash
-    npm run dev
-    ```
+## Comandos
 
-3.  Acesse `http://localhost:3000`.
+| Comando | Uso |
+|---|---|
+| `npm run dev -- --webpack` | Desenvolvimento local com Webpack |
+| `npm run type-check` | Verificação de tipos |
+| `npm run lint` | ESLint |
+| `npm run build` | Build de produção |
+| `npm start` | Executar um build existente |
 
-## 👨‍💻 Créditos
+A existência de um comando não significa que o check passou no seu checkout. Registre a validação para o commit que será publicado.
 
-Desenvolvido por **[Izaguirres](https://izaguirres.vercel.app)**.
-© 2025 Aplic Gráfica.
+## Onde alterar
+
+| Área | Fonte |
+|---|---|
+| Home | [app/page.tsx](app/page.tsx) e [app/nova-home/page.tsx](app/nova-home/page.tsx) |
+| Produtos, variações e preços | [lib/products-data.ts](lib/products-data.ts) |
+| Marca, domínio, contatos e metadados | [lib/site.ts](lib/site.ts) |
+| Tokens visuais | [app/aplic-design-system.css](app/aplic-design-system.css) |
+| Landings e cards compartilhados | [components/site/](components/site/) |
+| Eventos e atribuição | [lib/whatsapp-conversion.ts](lib/whatsapp-conversion.ts) e [lib/attribution.ts](lib/attribution.ts) |
+| Integrações globais | [app/layout.tsx](app/layout.tsx) |
+| Imagens e mídia | [public/images/](public/images/) |
+
+## Documentação
+
+- [Arquitetura e mapa do código](DOCUMENTATION.md)
+- [Repositório, remotes e colaboração](GITHUB_SETUP.md)
+- [Publicação na Vercel](DEPLOY.md)
+- [Tracking e limites da mensuração](docs/tracking-setup.md)
+
+Os relatórios antigos de status, dependências e proteções estão identificados como históricos. Não representam a versão ou a validação do commit atual. O guia técnico indica as fontes vigentes e os registros anteriores.
+
+## Links
+
+- **Site oficial:** [aplicgrafica.com.br](https://aplicgrafica.com.br)
+- **Repositório:** [izzaguirres/aplic-grafica](https://github.com/izzaguirres/aplic-grafica)
+- **Instagram:** [@aplicgrafica](https://www.instagram.com/aplicgrafica/)
+
+Desenvolvimento por [Leonardo Izaguirres](https://github.com/izzaguirres).

@@ -1,5 +1,11 @@
 # Tracking de conversão
 
+## mrkr via Google Tag Manager
+
+Desde o release de 06/10/2026, o mrkr é entregue pelo contêiner GTM existente. O layout raiz inclui `data-mrkr-delivery="gtm"` somente quando `VERCEL_ENV` é `production`; a configuração da tag fica no GTM. Não reinstalar o carregador direto nem tratar o ambiente local como produção para fazer QA.
+
+`NEXT_PUBLIC_GTM_ID` habilita o contêiner no layout. Deixe essa variável vazia no desenvolvimento quando não precisar testar GTM. Atlas/Pixerun tem carregador próprio e não é desativado por essa escolha.
+
 ## Atlas / Pixerun
 
 A tag `site_821pr6lli54jv4` é carregada uma única vez pelo `next/script` no layout raiz, com estratégia `afterInteractive`. O script do fornecedor acompanha navegações internas e cliques em links de WhatsApp; não adicionamos um disparo manual duplicado.

@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "aplic-grafica",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -80,5 +80,14 @@
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "description": "Site comercial da Aplic Gráfica em Florianópolis, com catálogo de produtos e orçamento pelo WhatsApp.",
+  "homepage": "https://aplicgrafica.com.br",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/izzaguirres/aplic-grafica.git"
+  },
+  "bugs": {
+    "url": "https://github.com/izzaguirres/aplic-grafica/issues"
   }
 }
