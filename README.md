@@ -40,7 +40,7 @@ cp env.example .env.local
 npm run dev -- --webpack
 ```
 
-Acesse [localhost:3000](http://localhost:3000). No workspace clawd, execute o preflight local antes de iniciar qualquer servidor: `/Users/izzaguirres/clawd/scripts/dev-server-preflight.sh <caminho-do-projeto>`.
+Acesse [localhost:3000](http://localhost:3000).
 
 O exemplo de ambiente inclui apenas variáveis lidas pela aplicação:
 
