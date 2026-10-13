@@ -6,7 +6,7 @@ import { productsData } from "@/lib/products-data"
 import { absoluteUrl, businessId, createFaqSchema, createPageMetadata, siteConfig, serviceAreas } from "@/lib/site"
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Produtos gráficos em Florianópolis: catálogo e preços",
+  title: "Produtos gráficos em Florianópolis",
   description:
     "Produtos gráficos em Florianópolis: banners a partir de R$90, cartões, panfletos e adesivos. Compare formatos e quantidades e peça pelo WhatsApp.",
   path: "/produtos",

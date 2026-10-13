@@ -14,7 +14,7 @@ const faqs: ProductLandingFaq[] = [
 ];
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Cartão de visita em Florianópolis a partir de R$185",
+  title: "Cartão de visita em Floripa desde R$185",
   description: "Cartão de visita em Florianópolis a partir de R$185 (100 un., brilho total), em até 3 dias úteis. Compare acabamentos e peça pelo WhatsApp.",
   path: "/cartao-de-visita",
   keywords: ["cartão de visita florianópolis", "cartão de visita floripa", "cartão brilho localizado florianópolis"],

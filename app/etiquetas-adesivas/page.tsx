@@ -15,7 +15,7 @@ const faqs: ProductLandingFaq[] = [
   { question: "Qual é o prazo?", answer: "As etiquetas do catálogo podem sair em até 3 dias úteis. Formatos especiais têm prazo confirmado no orçamento." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Etiquetas e adesivos em Florianópolis a partir de R$145", description: "Etiquetas adesivas em Florianópolis a partir de R$145 (100 un., até 5x5cm). Produção em até 3 dias úteis. Peça seu orçamento pelo WhatsApp.", path: "/etiquetas-adesivas", keywords: ["etiquetas adesivas florianópolis", "rótulos personalizados floripa", "adesivos florianópolis"] });
+export const metadata: Metadata = createPageMetadata({ title: "Etiquetas adesivas em Floripa desde R$145", description: "Etiquetas adesivas em Florianópolis a partir de R$145 (100 un., até 5x5cm). Produção em até 3 dias úteis. Peça seu orçamento pelo WhatsApp.", path: "/etiquetas-adesivas", keywords: ["etiquetas adesivas florianópolis", "rótulos personalizados floripa", "adesivos florianópolis"] });
 const pageSchema = createServicePageSchema({ path: "/etiquetas-adesivas", name: "Etiquetas adesivas em Florianópolis", description: "Etiquetas e rótulos personalizados para produtos e embalagens.", serviceType: "Impressão de etiquetas adesivas", faqs, relatedProducts: products.map((product) => ({ name: product.name, description: product.description, url: product.landingPage })) });
 
 export default function EtiquetasAdesivasPage() {

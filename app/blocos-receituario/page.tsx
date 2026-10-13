@@ -14,7 +14,7 @@ const faqs: ProductLandingFaq[] = [
   { question: "Qual é o prazo?", answer: "O prazo depende do formato e da quantidade. Ele é confirmado com o valor antes de iniciar a produção." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Blocos e receituários em Florianópolis: peça seu orçamento", description: "Blocos e receituários personalizados em Florianópolis. Envie formato, quantidade e modelo pelo WhatsApp. Valor e prazo confirmados antes de produzir.", path: "/blocos-receituario", keywords: ["blocos personalizados florianópolis", "receituário médico florianópolis", "bloco de pedido floripa"] });
+export const metadata: Metadata = createPageMetadata({ title: "Blocos e receituários em Florianópolis", description: "Blocos e receituários personalizados em Florianópolis. Envie formato, quantidade e modelo pelo WhatsApp. Valor e prazo confirmados antes de produzir.", path: "/blocos-receituario", keywords: ["blocos personalizados florianópolis", "receituário médico florianópolis", "bloco de pedido floripa"] });
 const pageSchema = createServicePageSchema({ path: "/blocos-receituario", name: "Blocos e receituários em Florianópolis", description: "Blocos personalizados e receituários para clínicas, consultórios e empresas.", serviceType: "Impressão de blocos e receituários", faqs });
 
 export default function BlocosReceituarioPage() {
