@@ -10,7 +10,9 @@
     "type-check": "tsc --noEmit",
     "lint:fix": "eslint . --fix",
     "clean": "rm -rf .next out",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "sitemap:dates": "node scripts/update-sitemap-dates.mjs",
+    "sitemap:check": "node scripts/update-sitemap-dates.mjs --check"
   },
   "dependencies": {
     "@hookform/resolvers": "latest",

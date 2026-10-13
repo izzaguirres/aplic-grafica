@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: { absolute: "Página não encontrada | Aplic Gráfica" },
   description: "Esta página não foi encontrada. Veja os produtos ou fale com a Aplic Gráfica.",
+  // O Next injeta noindex na 404; null limpa a herança sem duplicar essa tag.
   robots: null,
   alternates: null,
   openGraph: null,

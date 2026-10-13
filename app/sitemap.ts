@@ -1,77 +1,78 @@
 import { MetadataRoute } from "next"
 import { absoluteUrl } from "@/lib/site"
+import sitemapDates from "@/lib/sitemap-dates.json"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: absoluteUrl("/"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/"].lastModified,
       changeFrequency: "daily",
       priority: 1,
     },
     {
       url: absoluteUrl("/produtos"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/produtos"].lastModified,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: absoluteUrl("/sobre"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/sobre"].lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: absoluteUrl("/contato"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/contato"].lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: absoluteUrl("/cartao-de-visita"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/cartao-de-visita"].lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/panfleto"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/panfleto"].lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/banner"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/banner"].lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/cracha"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/cracha"].lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/grafica-em-floripa"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/grafica-em-floripa"].lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/etiquetas-adesivas"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/etiquetas-adesivas"].lastModified,
       changeFrequency: "weekly",
       priority: 0.85,
     },
     {
       url: absoluteUrl("/pasta-com-bolso"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/pasta-com-bolso"].lastModified,
       changeFrequency: "weekly",
       priority: 0.85,
     },
     {
       url: absoluteUrl("/blocos-receituario"),
-      lastModified: "2026-10-13",
+      lastModified: sitemapDates["/blocos-receituario"].lastModified,
       changeFrequency: "weekly",
       priority: 0.85,
     },
