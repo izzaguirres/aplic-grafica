@@ -8,7 +8,7 @@ export function BusinessDetails() {
       <strong>{siteConfig.name}</strong>
       <span>Gráfica online com produção própria.</span>
       <span>Atendimento em toda {location.city}.</span>
-      <a href={`tel:${siteConfig.phoneE164}`}>{siteConfig.phoneDisplay}</a>
+      <a href={siteConfig.whatsappUrl}>WhatsApp {siteConfig.phoneDisplay}</a>
       <span>{hours.label}</span>
       <span>{siteConfig.onlineServiceNote}</span>
     </div>

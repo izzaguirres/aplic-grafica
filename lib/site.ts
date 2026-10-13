@@ -68,6 +68,13 @@ export function createLocalBusinessSchema() {
     url: siteConfig.url,
     description: siteConfig.description,
     telephone: siteConfig.phoneE164,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      availableLanguage: "pt-BR",
+      telephone: siteConfig.phoneE164,
+      url: siteConfig.whatsappUrl,
+    },
     email: siteConfig.email,
     image: absoluteUrl("/images/thumbnail.png"),
     logo: absoluteUrl("/images/logo.png"),
