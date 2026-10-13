@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: absoluteUrl("/sobre"),
-      lastModified: "2026-09-04",
+      lastModified: "2026-10-13",
       changeFrequency: "monthly",
       priority: 0.7,
     },

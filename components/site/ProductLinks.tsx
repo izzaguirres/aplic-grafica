@@ -10,7 +10,7 @@ export function ProductLinks({ currentPath }: { currentPath?: string }) {
         {productLinks.filter((link) => link.href !== currentPath).map((link) => (
           <li key={link.href}><Link href={link.href}>{link.label}</Link></li>
         ))}
-        <li><Link href="/contato">Contato e retirada</Link></li>
+        <li><Link href="/contato">Contato e orçamento</Link></li>
       </ul>
     </nav>
   );

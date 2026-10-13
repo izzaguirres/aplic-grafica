@@ -39,8 +39,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-background/80 leading-relaxed max-w-md text-sm md:text-base">
-              Gráfica em Canasvieiras, Florianópolis, com {years} anos de mercado.
-              Orçamento pelo WhatsApp, produção combinada e entrega no seu endereço.
+              Gráfica online com produção própria e {years} anos de mercado.
+              Orçamento pelo WhatsApp e entrega em toda Florianópolis.
             </p>
             <Button 
               data-footer-whatsapp
@@ -88,7 +88,7 @@ export function Footer() {
                   className="text-background/80 [@media(hover:hover)_and_(pointer:fine)]:hover:text-primary transition-colors motion-reduce:transition-none flex items-center group"
                 >
                   <ArrowRight className="h-4 w-4 mr-2 motion-safe:[@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 transition-transform motion-reduce:transition-none" aria-hidden="true" />
-                  Gráfica em Florianópolis
+                  Áreas atendidas
                 </Link>
               </li>
               <li>

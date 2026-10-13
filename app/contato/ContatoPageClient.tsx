@@ -55,7 +55,7 @@ export default function ContatoPageClient() {
           </p>
           <div className={styles.serviceFacts} data-aplic-reveal="text" data-reveal-order="4">
             <span><Clock3 aria-hidden="true" />{siteConfig.hours.label}</span>
-            <span><MapPin aria-hidden="true" />{siteConfig.location.neighborhood}, {siteConfig.location.city}</span>
+            <span><MapPin aria-hidden="true" />Atendimento em toda {siteConfig.location.city}</span>
           </div>
         </div>
 

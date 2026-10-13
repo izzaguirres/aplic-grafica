@@ -13,8 +13,8 @@ const benefits = [
   },
   {
     icon: Truck,
-    title: "Entrega no seu endereço",
-    description: "Entregamos em Floripa e região, com retirada combinada quando fizer mais sentido.",
+    title: "Entrega em Florianópolis",
+    description: "Pedidos online com entrega em toda Florianópolis. Condições confirmadas no atendimento.",
   },
   {
     icon: UserCheck,

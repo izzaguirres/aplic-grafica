@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { ServiceAreas } from "@/components/site/ServiceAreas";
 import { BusinessDetails } from "@/components/site/BusinessDetails";
 import { ProductLinks } from "@/components/site/ProductLinks";
 import Image from "next/image";
 import { ProductionVideo } from "@/components/site/ProductionVideo";
 import Link from "next/link";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MessageCircleMore } from "lucide-react";
 import { TrustedClients } from "@/components/TrustedClients";
 import {
   ProductRailButton,
@@ -96,7 +97,7 @@ const faqs = [
   {
     question: "A Aplic entrega em Florianópolis?",
     answer:
-      "Sim. A entrega atende Florianópolis e região, e a retirada pode ser combinada quando fizer mais sentido para o pedido.",
+      "Sim. Somos uma gráfica online com produção própria e entrega em toda Florianópolis. O prazo e o custo da entrega são confirmados no atendimento pelo WhatsApp.",
   },
 ];
 
@@ -162,10 +163,7 @@ export default function NovaHomePage() {
                 Gráfica rápida{" "}
               </span>
               <span data-nova-reveal="text" data-reveal-order="1">
-                em Canasvieiras,{" "}
-              </span>
-              <span data-nova-reveal="text" data-reveal-order="2">
-                Florianópolis.
+                em Florianópolis
               </span>
             </h1>
             <p
@@ -173,8 +171,8 @@ export default function NovaHomePage() {
               data-nova-reveal="text"
               data-reveal-order="3"
             >
-              Cartões, panfletos, adesivos, banners e mais. Escolha a opção,
-              veja o valor e peça pelo WhatsApp.
+              Produção própria de cartões, panfletos, adesivos, banners e mais.
+              Escolha online, veja o valor e peça pelo WhatsApp.
             </p>
 
             <div
@@ -262,6 +260,7 @@ export default function NovaHomePage() {
       </section>
 
       <ProductLinks />
+      <ServiceAreas />
 
       <section className={styles.trust} aria-labelledby="trust-title">
         <div className={styles.trustCopy}>
@@ -270,7 +269,7 @@ export default function NovaHomePage() {
             data-nova-reveal="text"
             data-reveal-order="0"
           >
-            Onde estamos e retirada
+            Produção própria
           </p>
           <h2 id="trust-title">
             <span data-nova-reveal="text" data-reveal-order="1">
@@ -289,7 +288,7 @@ export default function NovaHomePage() {
             data-nova-reveal="text"
             data-reveal-order="4"
           >
-            <MapPin aria-hidden="true" />
+            <MessageCircleMore aria-hidden="true" />
             <BusinessDetails />
           </div>
         </div>

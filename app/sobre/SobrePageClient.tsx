@@ -14,13 +14,13 @@ const values = [
   },
   {
     number: "02",
-    title: "Produção em Florianópolis",
+    title: "Produção própria",
     text: "Acompanhamos cada etapa e combinamos prazo antes de colocar o material em produção.",
   },
   {
     number: "03",
     title: "Entrega do jeito certo",
-    text: "O pedido vai ao endereço combinado ou fica disponível para retirada agendada.",
+    text: "Entregamos em toda Florianópolis. Prazo e custo de entrega são confirmados no atendimento.",
   },
 ];
 
@@ -36,7 +36,7 @@ export default function SobrePageClient() {
             Há 15 anos, transformamos ideias em material impresso.
           </h1>
           <p data-aplic-reveal="text" data-reveal-order="2">
-            Somos uma gráfica de Florianópolis feita para empresas e pessoas que precisam resolver bem, sem perder tempo entre orçamento, arte e produção.
+            Somos uma gráfica online com produção própria, feita para empresas e pessoas que precisam resolver bem, sem perder tempo entre orçamento, arte e produção.
           </p>
           <div className={styles.heroActions} data-aplic-reveal="text" data-reveal-order="3">
             <WhatsAppAction
@@ -80,7 +80,7 @@ export default function SobrePageClient() {
           </p>
           <p className={styles.location} data-aplic-reveal="text" data-reveal-order="3">
             <MapPin aria-hidden="true" />
-            Escritório operacional em Florianópolis. Atendimento, entrega e retirada sempre combinados.
+            Pedidos online pelo WhatsApp, com entrega em toda Florianópolis. Sem atendimento presencial.
           </p>
         </div>
       </section>
@@ -108,7 +108,7 @@ export default function SobrePageClient() {
       <section className={styles.finalCta} aria-labelledby="about-cta-title">
         <div data-aplic-reveal="text">
           <p className={styles.eyebrow}>Seu projeto, nossa produção</p>
-          <h2 id="about-cta-title">Vamos colocar sua ideia na rua.</h2>
+          <h2 id="about-cta-title">Vamos colocar sua ideia em circulação.</h2>
         </div>
         <div data-aplic-reveal="text" data-reveal-order="1">
           <p>Conte o que precisa. Nós ajudamos a escolher o formato e confirmamos valor e prazo antes de começar.</p>

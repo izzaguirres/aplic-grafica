@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "blocos receituários florianópolis",
     "comunicação visual",
     "impressão digital",
-    "gráfica canasvieiras",
+    "gráfica online florianópolis",
   ],
   authors: [{ name: siteConfig.name, url: absoluteUrl("/") }],
   creator: siteConfig.name,

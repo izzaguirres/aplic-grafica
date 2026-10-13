@@ -59,7 +59,7 @@ export function ProductLandingPage({
   faqs,
   whatsappMessage,
   analyticsSource,
-  proof = "Produção em Canasvieiras, com entrega ou retirada combinada em Florianópolis.",
+  proof = "Gráfica online com produção própria e entrega em toda Florianópolis.",
 }: ProductLandingPageProps) {
   const singleProduct = products.length === 1 ? products[0] : undefined;
 

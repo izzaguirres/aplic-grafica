@@ -196,7 +196,7 @@ export default function ProdutosPageClient() {
             Escolha seu impresso. Veja o preço na hora. Selecione o produto e a quantidade para seguir com o orçamento no WhatsApp.
           </p>
           <p className={styles.localContext} data-aplic-reveal="text" data-reveal-order="3">
-            Produção em Canasvieiras, com entrega ou retirada combinada em Florianópolis.
+            Gráfica online com produção própria e entrega em toda Florianópolis.
           </p>
         </div>
 

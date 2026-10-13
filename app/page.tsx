@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import NovaHomePage from "./nova-home/page";
 import { productsData } from "@/lib/products-data";
-import { absoluteUrl, businessId, createPageMetadata, siteConfig } from "@/lib/site";
+import { absoluteUrl, businessId, createPageMetadata, siteConfig, serviceAreas } from "@/lib/site";
 
 const homeTitle = siteConfig.title;
 const homeDescription = siteConfig.description;
@@ -28,7 +28,7 @@ const homeSchema = {
       name: "Impressão gráfica rápida e comunicação visual em Florianópolis",
       serviceType: "Serviços gráficos e impressão digital",
       provider: { "@id": businessId },
-      areaServed: siteConfig.location.areaServed,
+      areaServed: serviceAreas,
       availableChannel: {
         "@type": "ServiceChannel",
         serviceUrl: absoluteUrl("/contato"),

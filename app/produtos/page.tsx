@@ -3,7 +3,7 @@ import { JsonLd } from "@/components/JsonLd"
 import { catalogFaqs } from "@/lib/catalog-faqs"
 import ProdutosPageClient from "./ProdutosPageClient"
 import { productsData } from "@/lib/products-data"
-import { absoluteUrl, businessId, createFaqSchema, createPageMetadata, siteConfig } from "@/lib/site"
+import { absoluteUrl, businessId, createFaqSchema, createPageMetadata, siteConfig, serviceAreas } from "@/lib/site"
 
 export const metadata: Metadata = createPageMetadata({
   title: "Produtos gráficos em Florianópolis: catálogo e preços",
@@ -62,7 +62,7 @@ const productsSchema = {
               "@id": businessId,
               name: siteConfig.name,
             },
-            areaServed: siteConfig.location.areaServed,
+            areaServed: serviceAreas,
           },
         }
       }),

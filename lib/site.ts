@@ -12,16 +12,13 @@ function normalizeUrl(value?: string) {
 
 export const siteUrl = normalizeUrl(process.env.NEXT_PUBLIC_SITE_URL) || "https://aplicgrafica.com.br"
 
-// Preencher somente após confirmação. Não usar endereços de diretórios como fonte.
-export const TODO_ENDERECO = null as { streetAddress: string; postalCode: string } | null
-
 export const siteConfig = {
   name: "Aplic Gráfica",
   shortName: "Aplic Gráfica",
   url: siteUrl,
-  title: "Gráfica rápida em Canasvieiras, Florianópolis | Aplic Gráfica",
+  title: "Gráfica rápida em Florianópolis | Aplic Gráfica",
   description:
-    "Gráfica rápida em Canasvieiras, Florianópolis. Cartões de visita, panfletos, banners e adesivos. Peça pelo WhatsApp; entrega ou retirada combinada.",
+    "Gráfica online com produção própria e entrega em toda Florianópolis. Cartões, panfletos, banners e adesivos. Peça seu orçamento pelo WhatsApp.",
   ogImage: "/opengraph-image",
   twitterImage: "/twitter-image",
   locale: "pt_BR",
@@ -39,17 +36,20 @@ export const siteConfig = {
     closes: "18:00",
   },
   location: {
-    neighborhood: "Canasvieiras",
     city: "Florianópolis",
-    region: "SC",
-    country: "BR",
-    areaServed: "Florianópolis",
-    serviceArea: ["Florianópolis", "São José", "Palhoça", "Biguaçu"],
-    operationalOfficeNote:
-      "Atendimento pelo WhatsApp; entrega ou retirada previamente combinada.",
-    confirmedAddress: TODO_ENDERECO,
+    neighborhoods: ["Centro", "Trindade", "Santa Mônica", "Jurerê", "Canasvieiras", "Ingleses"],
   },
+  onlineServiceNote: "Pedidos online pelo WhatsApp, com entrega. Sem atendimento presencial.",
 } as const
+
+export const serviceAreas = [
+  { "@type": "City", name: siteConfig.location.city },
+  ...siteConfig.location.neighborhoods.map((name) => ({
+    "@type": "Place",
+    name,
+    containedInPlace: { "@type": "City", name: siteConfig.location.city },
+  })),
+]
 
 export function absoluteUrl(path = "/") {
   if (!path || path === "/") return siteConfig.url
@@ -60,7 +60,6 @@ export function absoluteUrl(path = "/") {
 export const businessId = `${absoluteUrl("/")}#organization`
 
 export function createLocalBusinessSchema() {
-  const address = siteConfig.location.confirmedAddress
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -72,14 +71,7 @@ export function createLocalBusinessSchema() {
     email: siteConfig.email,
     image: absoluteUrl("/images/thumbnail.png"),
     logo: absoluteUrl("/images/logo.png"),
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: siteConfig.location.city,
-      addressRegion: siteConfig.location.region,
-      addressCountry: siteConfig.location.country,
-      ...(address ? { streetAddress: address.streetAddress, postalCode: address.postalCode } : {}),
-    },
-    areaServed: siteConfig.location.areaServed,
+    areaServed: serviceAreas,
     openingHoursSpecification: [{
       "@type": "OpeningHoursSpecification",
       dayOfWeek: siteConfig.hours.days,
@@ -200,7 +192,7 @@ export function createServicePageSchema({
         provider: {
           "@id": businessId,
         },
-        areaServed: siteConfig.location.serviceArea,
+        areaServed: serviceAreas,
         availableChannel: {
           "@type": "ServiceChannel",
           serviceUrl: absoluteUrl("/contato"),
