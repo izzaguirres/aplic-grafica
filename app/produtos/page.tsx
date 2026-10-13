@@ -1,13 +1,14 @@
 import type { Metadata } from "next"
 import { JsonLd } from "@/components/JsonLd"
+import { catalogFaqs } from "@/lib/catalog-faqs"
 import ProdutosPageClient from "./ProdutosPageClient"
 import { productsData } from "@/lib/products-data"
-import { absoluteUrl, createPageMetadata, siteConfig } from "@/lib/site"
+import { absoluteUrl, businessId, createFaqSchema, createPageMetadata, siteConfig, serviceAreas } from "@/lib/site"
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Produtos e Preços",
+  title: "Produtos gráficos em Florianópolis",
   description:
-    "Confira o catálogo completo da Aplic Gráfica com cartões de visita, panfletos, banners, adesivos e outros materiais gráficos em Florianópolis.",
+    "Produtos gráficos em Florianópolis: banners a partir de R$90, cartões, panfletos e adesivos. Compare formatos e quantidades e peça pelo WhatsApp.",
   path: "/produtos",
   keywords: [
     "produtos gráficos florianópolis",
@@ -20,6 +21,7 @@ export const metadata: Metadata = createPageMetadata({
 const productsSchema = {
   "@context": "https://schema.org",
   "@graph": [
+    createFaqSchema("/produtos", catalogFaqs),
     {
       "@type": "BreadcrumbList",
       "@id": `${absoluteUrl("/produtos")}#breadcrumb`,
@@ -57,10 +59,10 @@ const productsSchema = {
             description: product.description,
             url: productUrl,
             provider: {
-              "@id": `${absoluteUrl("/")}#organization`,
+              "@id": businessId,
               name: siteConfig.name,
             },
-            areaServed: siteConfig.location.areaServed,
+            areaServed: serviceAreas,
           },
         }
       }),

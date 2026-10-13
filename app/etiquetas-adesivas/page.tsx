@@ -15,13 +15,15 @@ const faqs: ProductLandingFaq[] = [
   { question: "Qual é o prazo?", answer: "As etiquetas do catálogo podem sair em até 3 dias úteis. Formatos especiais têm prazo confirmado no orçamento." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Etiquetas Adesivas em Florianópolis", description: "Etiquetas adesivas e rótulos personalizados em Florianópolis para produtos e embalagens. Atendimento pelo WhatsApp.", path: "/etiquetas-adesivas", keywords: ["etiquetas adesivas florianópolis", "rótulos personalizados floripa", "adesivos florianópolis"] });
+export const metadata: Metadata = createPageMetadata({ title: "Etiquetas adesivas em Floripa desde R$145", description: "Etiquetas adesivas em Florianópolis a partir de R$145 (100 un., até 5x5cm). Produção em até 3 dias úteis. Peça seu orçamento pelo WhatsApp.", path: "/etiquetas-adesivas", keywords: ["etiquetas adesivas florianópolis", "rótulos personalizados floripa", "adesivos florianópolis"] });
 const pageSchema = createServicePageSchema({ path: "/etiquetas-adesivas", name: "Etiquetas adesivas em Florianópolis", description: "Etiquetas e rótulos personalizados para produtos e embalagens.", serviceType: "Impressão de etiquetas adesivas", faqs, relatedProducts: products.map((product) => ({ name: product.name, description: product.description, url: product.landingPage })) });
 
 export default function EtiquetasAdesivasPage() {
   return <><JsonLd data={pageSchema} /><ProductLandingPage
     eyebrow="Etiquetas e rótulos"
-    title="Sua marca presente em cada embalagem."
+    title="Etiquetas adesivas e adesivos em Florianópolis"
+    path="/etiquetas-adesivas"
+    subtitle="Sua marca presente em cada embalagem."
     lead="Escolha tamanho e quantidade para rótulos, produtos e embalagens. A arte e o acabamento são conferidos antes da produção."
     heroImage={{ src: "/images/campanha/produtos/etiqueta-adesiva.webp", alt: "Etiqueta adesiva da campanha Faz Propaganda aplicada em uma embalagem", position: "50% 54%" }}
     products={products}

@@ -1,5 +1,8 @@
 "use client"
 
+import { catalogFaqs } from "@/lib/catalog-faqs"
+import { FaqAccordion } from "@/components/nova-home/FaqAccordion"
+import { ProductLinks } from "@/components/site/ProductLinks"
 import { useMemo, useState } from "react"
 import { ArrowUpRight, PackageSearch, Search, X } from "lucide-react"
 import { EditorialReveal } from "@/components/site/EditorialReveal"
@@ -179,10 +182,10 @@ export default function ProdutosPageClient() {
           </p>
           <h1 id="catalog-title">
             <span data-aplic-reveal="text" data-reveal-order="1">
-              Escolha seu impresso.
+              Produtos gráficos{" "}
             </span>
             <span data-aplic-reveal="text" data-reveal-order="2">
-              Veja o preço na hora.
+              em Florianópolis
             </span>
           </h1>
           <p
@@ -190,8 +193,10 @@ export default function ProdutosPageClient() {
             data-aplic-reveal="text"
             data-reveal-order="3"
           >
-            Escolha o produto e a quantidade. Os detalhes seguem para o orçamento
-            no WhatsApp.
+            Escolha seu impresso. Veja o preço na hora. Selecione o produto e a quantidade para seguir com o orçamento no WhatsApp.
+          </p>
+          <p className={styles.localContext} data-aplic-reveal="text" data-reveal-order="3">
+            Gráfica online com produção própria e entrega em toda Florianópolis.
           </p>
         </div>
 
@@ -345,6 +350,12 @@ export default function ProdutosPageClient() {
           </div>
         )}
       </section>
+
+      <section className={styles.faq} aria-labelledby="catalog-faq-title">
+        <h2 id="catalog-faq-title">Dúvidas sobre o catálogo</h2>
+        <FaqAccordion items={catalogFaqs} />
+      </section>
+      <ProductLinks currentPath="/produtos" />
 
       <section
         className={styles.customProject}

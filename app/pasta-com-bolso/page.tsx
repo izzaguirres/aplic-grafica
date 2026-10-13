@@ -13,7 +13,7 @@ const faqs: ProductLandingFaq[] = [
   { question: "Qual é o prazo?", answer: "A pasta é produzida em até 5 dias úteis após a aprovação do arquivo. O prazo exato é confirmado no orçamento." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Pasta com Bolso Personalizada em Florianópolis", description: "Pasta com bolso personalizada em Florianópolis para propostas, contratos e apresentações. Atendimento pelo WhatsApp.", path: "/pasta-com-bolso", keywords: ["pasta com bolso florianópolis", "pasta personalizada floripa", "pasta corporativa florianópolis"] });
+export const metadata: Metadata = createPageMetadata({ title: "Pasta com bolso em Florianópolis", description: "Pasta com bolso personalizada em Florianópolis para propostas, contratos e apresentações. Atendimento pelo WhatsApp.", path: "/pasta-com-bolso", keywords: ["pasta com bolso florianópolis", "pasta personalizada floripa", "pasta corporativa florianópolis"] });
 const pageSchema = createServicePageSchema({ path: "/pasta-com-bolso", name: "Pasta com bolso personalizada em Florianópolis", description: "Pasta personalizada para propostas, contratos e apresentações.", serviceType: "Impressão de pasta com bolso", faqs, relatedProducts: products.map((product) => ({ name: product.name, description: product.description, url: product.landingPage })) });
 
 export default function PastaComBolsoPage() {

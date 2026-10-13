@@ -1,47 +1,72 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
-import { ProductLandingPage, type ProductLandingFaq } from "@/components/site/ProductLandingPage";
-import { productsData } from "@/lib/products-data";
-import { blocosReceituarioProduct } from "@/lib/quote-products-data";
-import { createPageMetadata, createServicePageSchema } from "@/lib/site";
+import { FaqAccordion } from "@/components/nova-home/FaqAccordion";
+import { WhatsAppAction } from "@/components/nova-home/NovaHomeActions";
+import { AplicPageShell } from "@/components/site/AplicPageShell";
+import { ProductLinks } from "@/components/site/ProductLinks";
+import { ServiceAreas } from "@/components/site/ServiceAreas";
+import { createPageMetadata, createServicePageSchema, siteConfig } from "@/lib/site";
+import styles from "@/components/site/product-landing-page.module.css";
 
-const whatsappMessage = "Olá! Quero um orçamento de impressos por encomenda. Vou enviar o produto, a quantidade e uma arte ou referência.";
-const products = [
-  "panfleto-a6",
-  "cartao-brilho-frente",
-  blocosReceituarioProduct,
-  "banner-lona",
-].flatMap((item) => typeof item === "string"
-  ? productsData.filter((product) => product.id === item)
-  : [item]);
-const faqs: ProductLandingFaq[] = [
-  { question: "A Aplic atende pedidos online?", answer: "Sim. Você escolhe o produto, envia a arte pelo WhatsApp, aprova o orçamento e combina entrega ou retirada." },
+const title = "Áreas atendidas em Florianópolis";
+const description = "Gráfica online com produção própria e entrega em toda Florianópolis. Conheça as áreas atendidas e peça seu orçamento pelo WhatsApp.";
+const faqs = [
+  { question: "Como faço meu pedido online?", answer: "Você escolhe o produto no site, envia a arte pelo WhatsApp, aprova o orçamento e combina a entrega. A Aplic tem produção própria e não realiza atendimento presencial." },
+  { question: "Quais bairros a Aplic atende?", answer: `Atendemos toda Florianópolis, incluindo ${siteConfig.location.neighborhoods.join(", ")} e demais bairros.` },
+  { question: "Qual é o prazo e o custo da entrega?", answer: "O prazo e o custo da entrega são confirmados no atendimento pelo WhatsApp antes da aprovação do pedido." },
   { question: "Quais produtos posso pedir?", answer: "Panfletos, cartões de visita, receituários e banners por encomenda. Outros materiais gráficos podem ser consultados no catálogo." },
   { question: "Vocês fazem cópias avulsas de documentos A4 ou A3?", answer: "Não fazemos cópias avulsas ou impressão de documentos A4/A3. Nosso atendimento é voltado a materiais gráficos por encomenda, com produto, quantidade e prazo combinados." },
-  { question: "Vocês imprimem na hora?", answer: "Não trabalhamos como impressão imediata de balcão. Cada pedido tem prazo definido conforme produto, quantidade e arquivo." },
-  { question: "Como funciona a entrega?", answer: "A entrega atende Florianópolis e região. Endereço, valor e horário são combinados no atendimento." },
+  { question: "Vocês imprimem na hora?", answer: "A produção é feita por encomenda. Cada pedido tem prazo definido conforme produto, quantidade e arquivo." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Gráfica em Florianópolis", description: "Panfletos, cartões de visita, receituários e banners por encomenda em Florianópolis. Orçamento pelo WhatsApp, com entrega ou retirada combinada.", path: "/grafica-em-floripa", keywords: ["gráfica em florianópolis", "gráfica em floripa", "gráfica online florianópolis"] });
-const pageSchema = createServicePageSchema({ path: "/grafica-em-floripa", name: "Gráfica em Florianópolis", description: "Gráfica online em Florianópolis para impressos e comunicação visual.", serviceType: "Serviços gráficos online", faqs, relatedProducts: products.map((product) => ({ name: product.name, description: product.description, url: product.landingPage })) });
+export const metadata: Metadata = createPageMetadata({ title, description, path: "/grafica-em-floripa" });
+const pageSchema = createServicePageSchema({ path: "/grafica-em-floripa", name: title, description, serviceType: "Serviços gráficos online com entrega em Florianópolis", faqs });
 
 export default function GraficaEmFloripaPage() {
-  return <><JsonLd data={pageSchema} /><ProductLandingPage
-    eyebrow="Gráfica em Florianópolis"
-    title="Impressos por encomenda em Floripa."
-    lead="Panfletos, cartões de visita, receituários e banners para empresas e profissionais. Peça seu orçamento pelo WhatsApp."
-    qualification="Não fazemos cópias avulsas ou impressão de documentos A4/A3."
-    heroImage={{ src: "/images/campanha/hero-adesivo-faz-propaganda.webp", alt: "Material impresso da campanha Faz Propaganda produzido pela Aplic", position: "50% 50%" }}
-    products={products}
-    productsTitle="Escolha o material para seu pedido."
-    productsLead="Veja as opções e os valores de panfletos, cartões e banners. Receituários são feitos sob orçamento."
-    highlights={[
-      { label: "01", title: "Escolha online", description: "Produtos e preços ficam visíveis para você começar sem esperar uma tabela por mensagem." },
-      { label: "02", title: "Produção local", description: "Acompanhamos o pedido em Florianópolis e confirmamos o arquivo antes de produzir." },
-      { label: "03", title: "Entrega combinada", description: "O material segue para o endereço ou fica disponível para retirada agendada." },
-    ]}
-    faqs={faqs}
-    whatsappMessage={whatsappMessage}
-    analyticsSource="lp_floripa"
-  /></>;
+  return (
+    <>
+      <JsonLd data={pageSchema} />
+      <AplicPageShell className={styles.page}>
+        <section className={styles.hero} aria-labelledby="areas-page-title">
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow} data-aplic-reveal="text">Áreas atendidas</p>
+            <h1 id="areas-page-title" data-aplic-reveal="text" data-reveal-order="1">Atendemos toda Florianópolis</h1>
+            <p className={styles.heroLead} data-aplic-reveal="text" data-reveal-order="2">
+              Gráfica online com produção própria. Escolha seu produto no site, peça pelo WhatsApp e combine a entrega do seu material.
+            </p>
+            <p className={styles.heroQualification} data-aplic-reveal="text" data-reveal-order="2">
+              {siteConfig.onlineServiceNote}
+            </p>
+            <div className={styles.heroActions} data-aplic-reveal="text" data-reveal-order="3">
+              <WhatsAppAction
+                label="Pedir orçamento"
+                source="lp_floripa_hero"
+                message="Olá! Quero um orçamento de impressos com entrega em Florianópolis."
+                scope="general_quote"
+                context="service_areas"
+                tone="lime"
+              />
+              <Link className={styles.secondaryAction} href="/produtos">Catálogo <ArrowUpRight aria-hidden="true" /></Link>
+            </div>
+          </div>
+          <div className={styles.heroVisual} data-aplic-reveal="media">
+            <Image src="/images/campanha/hero-adesivo-faz-propaganda.webp" alt="Material impresso da campanha Faz Propaganda produzido pela Aplic" width={1122} height={1402} priority />
+          </div>
+        </section>
+        <ServiceAreas showDetailsLink={false} />
+        <section className={styles.faq} aria-labelledby="areas-faq-title">
+          <div className={styles.faqHeading} data-aplic-reveal="text">
+            <p className={styles.eyebrow}>Pedido e entrega</p>
+            <h2 id="areas-faq-title">Como funciona o atendimento online.</h2>
+            <p>Escolha seu material e confirme as condições pelo WhatsApp.</p>
+          </div>
+          <div data-aplic-reveal="text" data-reveal-order="1"><FaqAccordion items={faqs} /></div>
+        </section>
+        <ProductLinks currentPath="/grafica-em-floripa" />
+      </AplicPageShell>
+    </>
+  );
 }

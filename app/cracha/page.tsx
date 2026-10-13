@@ -13,7 +13,7 @@ const faqs: ProductLandingFaq[] = [
   { question: "Qual é o prazo?", answer: "A produção é feita em até 5 dias úteis após a aprovação do layout e a confirmação de todos os dados." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Crachá Empresarial em Florianópolis — 5 dias úteis", description: "Crachá empresarial personalizado em Florianópolis, com cordão incluso e aprovação de layout. Atendimento pelo WhatsApp.", path: "/cracha", keywords: ["crachá empresarial florianópolis", "crachá funcionário florianópolis"] });
+export const metadata: Metadata = createPageMetadata({ title: "Crachá empresarial em Florianópolis", description: "Crachá empresarial personalizado em Florianópolis, com cordão incluso e aprovação de layout. Atendimento pelo WhatsApp.", path: "/cracha", keywords: ["crachá empresarial florianópolis", "crachá funcionário florianópolis"] });
 const pageSchema = createServicePageSchema({ path: "/cracha", name: "Crachá empresarial em Florianópolis", description: "Crachás empresariais personalizados para equipes em Florianópolis.", serviceType: "Produção de crachá empresarial", faqs, relatedProducts: products.map((product) => ({ name: product.name, description: product.description, url: product.landingPage })) });
 
 export default function CrachaPage() {

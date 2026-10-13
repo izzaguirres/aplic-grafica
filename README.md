@@ -1,8 +1,8 @@
 # Aplic Gráfica
 
-**Gráfica & Marketing · Florianópolis, SC**
+**Gráfica online com produção própria · Florianópolis, SC**
 
-Site comercial da Aplic, com catálogo de materiais gráficos, opções de tamanho e quantidade, preços por variação e orçamento pelo WhatsApp. O atendimento é online, com entrega e retirada combinadas.
+Site comercial da Aplic, com catálogo de materiais gráficos, opções de tamanho e quantidade, preços por variação e orçamento pelo WhatsApp. A Aplic atende toda Florianópolis, com pedidos online pelo WhatsApp e entrega. Não há atendimento presencial.
 
 [Visitar o site](https://aplicgrafica.com.br) · [Explorar o catálogo](https://aplicgrafica.com.br/produtos) · [Documentação técnica](DOCUMENTATION.md)
 
@@ -80,6 +80,7 @@ A existência de um comando não significa que o check passou no seu checkout. R
 - [Repositório, remotes e colaboração](GITHUB_SETUP.md)
 - [Publicação na Vercel](DEPLOY.md)
 - [Tracking e limites da mensuração](docs/tracking-setup.md)
+- [Posicionamento online, cobertura e pendências de entrega](docs/seo-online.md)
 
 Os relatórios antigos de status, dependências e proteções estão identificados como históricos. Não representam a versão ou a validação do commit atual. O guia técnico indica as fontes vigentes e os registros anteriores.
 

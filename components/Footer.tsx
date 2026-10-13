@@ -2,10 +2,11 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { MessageCircle, Mail, Clock, MapPin, ArrowRight } from "lucide-react"
+import { MessageCircle, Mail, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useWhatsAppConversion } from "@/hooks/use-whatsapp-conversion"
-import { getYearsInBusiness } from "@/lib/site"
+import { BusinessDetails } from "@/components/site/BusinessDetails"
+import { getYearsInBusiness, siteConfig } from "@/lib/site"
 import { getWhatsAppTrackingAttributes } from "@/lib/whatsapp-conversion"
 
 export function Footer() {
@@ -38,8 +39,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-background/80 leading-relaxed max-w-md text-sm md:text-base">
-              Gráfica online em Florianópolis com {years} anos de mercado.
-              Orçamento pelo WhatsApp, produção combinada e entrega no seu endereço.
+              Gráfica online com produção própria e {years} anos de mercado.
+              Orçamento pelo WhatsApp e entrega em toda Florianópolis.
             </p>
             <Button 
               data-footer-whatsapp
@@ -87,7 +88,7 @@ export function Footer() {
                   className="text-background/80 [@media(hover:hover)_and_(pointer:fine)]:hover:text-primary transition-colors motion-reduce:transition-none flex items-center group"
                 >
                   <ArrowRight className="h-4 w-4 mr-2 motion-safe:[@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 transition-transform motion-reduce:transition-none" aria-hidden="true" />
-                  Gráfica em Florianópolis
+                  Áreas atendidas
                 </Link>
               </li>
               <li>
@@ -141,23 +142,10 @@ export function Footer() {
           <div className="space-y-4 md:space-y-6">
             <h3 className="font-semibold text-base md:text-lg">Contato</h3>
             <div className="space-y-3 md:space-y-4">
-              <div className="flex items-center space-x-3">
-                <MessageCircle className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
-                <span className="text-background/80 text-sm md:text-base">(48) 99912-8310</span>
-              </div>
+              <BusinessDetails />
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
-                <span className="text-background/80 text-xs md:text-sm break-words">comercialaplic@hotmail.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Clock className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
-                <span className="text-background/80 text-xs md:text-sm">Seg-Sex: 9h às 18h</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
-                <span className="text-background/80 text-xs md:text-sm">
-                  Escritório operacional em Florianópolis. Pedidos, entregas e retiradas são combinados pelo WhatsApp.
-                </span>
+                <a href={`mailto:${siteConfig.email}`} className="text-background/80 text-xs md:text-sm break-words">{siteConfig.email}</a>
               </div>
             </div>
           </div>

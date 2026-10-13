@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProductLinks } from "./ProductLinks";
 import { ArrowDown, ArrowUpRight, MapPin } from "lucide-react";
 import { FaqAccordion } from "@/components/nova-home/FaqAccordion";
 import { WhatsAppAction } from "@/components/nova-home/NovaHomeActions";
@@ -22,6 +23,8 @@ export interface ProductLandingFaq {
 interface ProductLandingPageProps {
   eyebrow: string;
   title: string;
+  subtitle?: string;
+  path?: string;
   lead: string;
   qualification?: string;
   heroImage?: {
@@ -43,6 +46,8 @@ interface ProductLandingPageProps {
 export function ProductLandingPage({
   eyebrow,
   title,
+  subtitle,
+  path,
   lead,
   qualification,
   heroImage,
@@ -54,7 +59,7 @@ export function ProductLandingPage({
   faqs,
   whatsappMessage,
   analyticsSource,
-  proof = "Produção em Florianópolis · entrega ou retirada combinada",
+  proof = "Gráfica online com produção própria e entrega em toda Florianópolis.",
 }: ProductLandingPageProps) {
   const singleProduct = products.length === 1 ? products[0] : undefined;
 
@@ -65,7 +70,7 @@ export function ProductLandingPage({
           <header className={styles.singleHeading}>
             <p className={styles.eyebrow} data-aplic-reveal="text">{eyebrow}</p>
             <h1 id="product-page-title" data-aplic-reveal="text">{title}</h1>
-            <p className={styles.heroLead} data-aplic-reveal="text">{lead}</p>
+            <p className={styles.heroLead} data-aplic-reveal="text">{subtitle && <><strong>{subtitle}</strong>{" "}</>}{lead}</p>
           </header>
           <div id="opcoes" className={styles.singleOptions}>
             <ProductCard
@@ -93,7 +98,7 @@ export function ProductLandingPage({
             {title}
           </h1>
           <p className={styles.heroLead} data-aplic-reveal="text" data-reveal-order="2">
-            {lead}
+            {subtitle && <><strong>{subtitle}</strong>{" "}</>}{lead}
           </p>
           {qualification && <p className={styles.heroQualification} data-aplic-reveal="text" data-reveal-order="2">
             {qualification}
@@ -239,6 +244,8 @@ export function ProductLandingPage({
           <FaqAccordion items={faqs} />
         </div>
       </section>
+
+      {path && <ProductLinks currentPath={path} />}
 
       <section className={styles.finalCta} aria-labelledby="product-final-cta">
         <div data-aplic-reveal="text">

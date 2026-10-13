@@ -36,7 +36,7 @@ Não é necessário criar outro repositório, outra integração GitHub ou um wo
 ## Identidade do repositório
 
 - Nome: `aplic-grafica`.
-- Apresentação: **Aplic Gráfica — Gráfica & Marketing**.
+- Apresentação: **Aplic Gráfica — Gráfica online com produção própria**.
 - Homepage: `https://aplicgrafica.com.br`.
 - Pacote npm privado: `aplic-grafica`.
 
