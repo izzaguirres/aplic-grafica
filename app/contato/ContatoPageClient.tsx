@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { BusinessDetails } from "@/components/site/BusinessDetails";
+import { siteConfig } from "@/lib/site";
 import { Clock3, MapPin, MessageCircleMore } from "lucide-react";
 import { WhatsAppAction } from "@/components/nova-home/NovaHomeActions";
 import { AplicPageShell } from "@/components/site/AplicPageShell";
@@ -52,8 +54,8 @@ export default function ContatoPageClient() {
             Orçamento, envio de arte ou acompanhamento: escolha o assunto e fale com a equipe pelo WhatsApp.
           </p>
           <div className={styles.serviceFacts} data-aplic-reveal="text" data-reveal-order="4">
-            <span><Clock3 aria-hidden="true" />Segunda a sexta, 9h às 18h</span>
-            <span><MapPin aria-hidden="true" />Florianópolis e região</span>
+            <span><Clock3 aria-hidden="true" />{siteConfig.hours.label}</span>
+            <span><MapPin aria-hidden="true" />{siteConfig.location.neighborhood}, {siteConfig.location.city}</span>
           </div>
         </div>
 
@@ -102,7 +104,7 @@ export default function ContatoPageClient() {
         </div>
         <div data-aplic-reveal="text" data-reveal-order="1">
           <MapPin aria-hidden="true" />
-          <p><strong>Produção em Florianópolis</strong> com entrega ou retirada previamente combinada.</p>
+          <BusinessDetails />
         </div>
       </section>
     </AplicPageShell>

@@ -22,13 +22,14 @@ const faqs: ProductLandingFaq[] = [
   { question: "Como funciona a entrega?", answer: "A entrega atende Florianópolis e região. Endereço, valor e horário são combinados no atendimento." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Gráfica em Florianópolis", description: "Panfletos, cartões de visita, receituários e banners por encomenda em Florianópolis. Orçamento pelo WhatsApp, com entrega ou retirada combinada.", path: "/grafica-em-floripa", keywords: ["gráfica em florianópolis", "gráfica em floripa", "gráfica online florianópolis"] });
-const pageSchema = createServicePageSchema({ path: "/grafica-em-floripa", name: "Gráfica em Florianópolis", description: "Gráfica online em Florianópolis para impressos e comunicação visual.", serviceType: "Serviços gráficos online", faqs, relatedProducts: products.map((product) => ({ name: product.name, description: product.description, url: product.landingPage })) });
+export const metadata: Metadata = createPageMetadata({ title: "Atendimento no Norte da Ilha e em Florianópolis: retirada e entrega", description: "Panfletos, cartões de visita, receituários e banners por encomenda em Florianópolis. Orçamento pelo WhatsApp, com entrega ou retirada combinada.", path: "/grafica-em-floripa", keywords: ["gráfica em florianópolis", "gráfica em floripa", "gráfica online florianópolis"] });
+const pageSchema = createServicePageSchema({ path: "/grafica-em-floripa", name: "Atendimento no Norte da Ilha e em Florianópolis: retirada e entrega", description: "Gráfica online em Florianópolis para impressos e comunicação visual.", serviceType: "Serviços gráficos online", faqs, relatedProducts: products.map((product) => ({ name: product.name, description: product.description, url: product.landingPage })) });
 
 export default function GraficaEmFloripaPage() {
   return <><JsonLd data={pageSchema} /><ProductLandingPage
-    eyebrow="Gráfica em Florianópolis"
-    title="Impressos por encomenda em Floripa."
+    eyebrow="Retirada e entrega"
+    title="Atendimento no Norte da Ilha e em Florianópolis: retirada e entrega"
+    path="/grafica-em-floripa"
     lead="Panfletos, cartões de visita, receituários e banners para empresas e profissionais. Peça seu orçamento pelo WhatsApp."
     qualification="Não fazemos cópias avulsas ou impressão de documentos A4/A3."
     heroImage={{ src: "/images/campanha/hero-adesivo-faz-propaganda.webp", alt: "Material impresso da campanha Faz Propaganda produzido pela Aplic", position: "50% 50%" }}

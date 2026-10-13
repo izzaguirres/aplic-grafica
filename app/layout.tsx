@@ -12,7 +12,8 @@ import { ScrollReveal } from "@/components/ScrollReveal"
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp"
 import { GoogleTagManager } from "@/components/google-tag-manager"
 import { AttributionCapture } from "@/components/AttributionCapture"
-import { absoluteUrl, siteConfig } from "@/lib/site"
+import { JsonLd } from "@/components/JsonLd"
+import { absoluteUrl, createLocalBusinessSchema, siteConfig } from "@/lib/site"
 
 const gtmContainerId = process.env.NEXT_PUBLIC_GTM_ID
 
@@ -41,9 +42,7 @@ export const metadata: Metadata = {
     "blocos receituários florianópolis",
     "comunicação visual",
     "impressão digital",
-    "centro",
-    "trindade",
-    "estreito",
+    "gráfica canasvieiras",
   ],
   authors: [{ name: siteConfig.name, url: absoluteUrl("/") }],
   creator: siteConfig.name,
@@ -103,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning data-mrkr-delivery={process.env.VERCEL_ENV === "production" ? "gtm" : undefined}>
+    <html lang="pt-BR" data-scroll-behavior="smooth" suppressHydrationWarning data-mrkr-delivery={process.env.VERCEL_ENV === "production" ? "gtm" : undefined}>
       <body className={`${googleSans.variable} font-sans antialiased`}>
         <GoogleTagManager containerId={gtmContainerId} />
         <Script
@@ -112,6 +111,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <AttributionCapture />
+        <JsonLd data={createLocalBusinessSchema()} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <ScrollReveal />
           <Header />

@@ -13,13 +13,15 @@ const faqs: ProductLandingFaq[] = [
   { question: "Qual é o prazo?", answer: "O A6 de 1.000 unidades pode sair em até 3 dias úteis. Tiragens e formatos diferentes têm prazo confirmado no orçamento." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Panfletos e Folders em Florianópolis", description: "Panfletos, folders e filipetas em Florianópolis, com impressão frente e verso e atendimento pelo WhatsApp.", path: "/panfleto", keywords: ["panfleto florianópolis", "panfleto a6 floripa", "folder florianópolis"] });
+export const metadata: Metadata = createPageMetadata({ title: "Panfletos em Florianópolis: A6 a partir de R$385", description: "Panfletos e folders em Florianópolis. A6: 1.000 un. por R$385, frente e verso, em até 3 dias úteis. Confira formatos e peça pelo WhatsApp.", path: "/panfleto", keywords: ["panfleto florianópolis", "panfleto a6 floripa", "folder florianópolis"] });
 const pageSchema = createServicePageSchema({ path: "/panfleto", name: "Panfletos e folders em Florianópolis", description: "Panfletos A5 e A6, folders e filipetas em Florianópolis.", serviceType: "Impressão de panfletos", faqs, relatedProducts: products.map((product) => ({ name: product.name, description: product.description, url: product.landingPage })) });
 
 export default function PanfletoPage() {
   return <><JsonLd data={pageSchema} /><ProductLandingPage
     eyebrow="Panfletos e folders"
-    title="Informação impressa para circular e vender."
+    title="Panfletos e folders em Florianópolis"
+    path="/panfleto"
+    subtitle="Informação impressa para circular e vender."
     lead="Compare formatos e tiragens para divulgação, cardápio, evento ou apresentação. O pedido segue direto para o WhatsApp."
     heroImage={{ src: "/images/campanha/produtos/panfleto-a6.webp", alt: "Panfleto da campanha Faz Propaganda", position: "50% 48%" }}
     products={products}

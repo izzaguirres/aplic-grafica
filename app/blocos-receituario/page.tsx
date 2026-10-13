@@ -14,13 +14,15 @@ const faqs: ProductLandingFaq[] = [
   { question: "Qual é o prazo?", answer: "O prazo depende do formato e da quantidade. Ele é confirmado com o valor antes de iniciar a produção." },
 ];
 
-export const metadata: Metadata = createPageMetadata({ title: "Blocos e Receituário Médico em Florianópolis", description: "Blocos personalizados e receituários em Florianópolis para clínicas, consultórios e empresas. Atendimento pelo WhatsApp.", path: "/blocos-receituario", keywords: ["blocos personalizados florianópolis", "receituário médico florianópolis", "bloco de pedido floripa"] });
+export const metadata: Metadata = createPageMetadata({ title: "Blocos e receituários em Florianópolis: peça seu orçamento", description: "Blocos e receituários personalizados em Florianópolis. Envie formato, quantidade e modelo pelo WhatsApp. Valor e prazo confirmados antes de produzir.", path: "/blocos-receituario", keywords: ["blocos personalizados florianópolis", "receituário médico florianópolis", "bloco de pedido floripa"] });
 const pageSchema = createServicePageSchema({ path: "/blocos-receituario", name: "Blocos e receituários em Florianópolis", description: "Blocos personalizados e receituários para clínicas, consultórios e empresas.", serviceType: "Impressão de blocos e receituários", faqs });
 
 export default function BlocosReceituarioPage() {
   return <><JsonLd data={pageSchema} /><ProductLandingPage
     eyebrow="Blocos e receituários"
-    title="Papelaria feita para a rotina funcionar."
+    title="Blocos e receituários em Florianópolis"
+    path="/blocos-receituario"
+    subtitle="Papelaria feita para a rotina funcionar."
     lead="Receituários, blocos de pedido e materiais personalizados para clínicas, consultórios e empresas."
     heroImage={{ src: blocosReceituarioProduct.image, alt: "Mockup ilustrativo de um bloco personalizado", position: "50% 50%" }}
     products={[]}

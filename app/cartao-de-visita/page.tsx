@@ -14,8 +14,8 @@ const faqs: ProductLandingFaq[] = [
 ];
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Cartão de Visita em Florianópolis",
-  description: "Cartão de visita em Florianópolis em couchê 300g, com brilho total, fosco e verniz localizado. Atendimento pelo WhatsApp.",
+  title: "Cartão de visita em Florianópolis a partir de R$185",
+  description: "Cartão de visita em Florianópolis a partir de R$185 (100 un., brilho total), em até 3 dias úteis. Compare acabamentos e peça pelo WhatsApp.",
   path: "/cartao-de-visita",
   keywords: ["cartão de visita florianópolis", "cartão de visita floripa", "cartão brilho localizado florianópolis"],
 });
@@ -32,7 +32,9 @@ const pageSchema = createServicePageSchema({
 export default function CartaoDeVisitaPage() {
   return <><JsonLd data={pageSchema} /><ProductLandingPage
     eyebrow="Cartão de visita"
-    title="Seu primeiro contato começa antes da conversa."
+    title="Cartão de visita em Florianópolis"
+    path="/cartao-de-visita"
+    subtitle="Seu primeiro contato começa antes da conversa."
     lead="Escolha o acabamento e a quantidade. Nós conferimos a arte, confirmamos o prazo e produzimos em Florianópolis."
     heroImage={{ src: "/images/campanha/produtos/cartao-visita.webp", alt: "Cartão de visita da campanha Faz Propaganda", position: "50% 54%" }}
     products={products}

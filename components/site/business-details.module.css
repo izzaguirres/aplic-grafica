@@ -1,0 +1,14 @@
+.details {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-style: normal;
+  line-height: 1.6;
+}
+.details strong { font-size: 1rem; }
+.details a {
+  width: fit-content;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.details a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }

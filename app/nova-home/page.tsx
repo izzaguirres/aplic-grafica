@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { BusinessDetails } from "@/components/site/BusinessDetails";
+import { ProductLinks } from "@/components/site/ProductLinks";
 import Image from "next/image";
 import { ProductionVideo } from "@/components/site/ProductionVideo";
 import Link from "next/link";
@@ -157,13 +159,13 @@ export default function NovaHomePage() {
           <div className={styles.heroCopy}>
             <h1 id="nova-home-title" className={styles.heroTitle}>
               <span data-nova-reveal="text" data-reveal-order="0">
-                Gráfica Rápida
+                Gráfica rápida{" "}
               </span>
               <span data-nova-reveal="text" data-reveal-order="1">
-                para empresas
+                em Canasvieiras,{" "}
               </span>
               <span data-nova-reveal="text" data-reveal-order="2">
-                em Florianópolis.
+                Florianópolis.
               </span>
             </h1>
             <p
@@ -259,6 +261,8 @@ export default function NovaHomePage() {
         </div>
       </section>
 
+      <ProductLinks />
+
       <section className={styles.trust} aria-labelledby="trust-title">
         <div className={styles.trustCopy}>
           <p
@@ -266,7 +270,7 @@ export default function NovaHomePage() {
             data-nova-reveal="text"
             data-reveal-order="0"
           >
-            Feito em Florianópolis
+            Onde estamos e retirada
           </p>
           <h2 id="trust-title">
             <span data-nova-reveal="text" data-reveal-order="1">
@@ -286,10 +290,7 @@ export default function NovaHomePage() {
             data-reveal-order="4"
           >
             <MapPin aria-hidden="true" />
-            <p>
-              Atendimento pelo WhatsApp, produção local e entrega ou retirada
-              combinada.
-            </p>
+            <BusinessDetails />
           </div>
         </div>
         <div className={styles.trustMedia} data-nova-reveal="media">
