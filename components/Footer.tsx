@@ -156,7 +156,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Aplic Gráfica. Todos os direitos reservados.
           </p>
           <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Desenvolvido por <a href="https://izaguirres.vercel.app" target="_blank" rel="noopener noreferrer" className="font-bold text-[#E6FF50] [@media(hover:hover)_and_(pointer:fine)]:hover:underline">Izaguirres</a>
+            Desenvolvido por <a href="https://www.serotiva.com" target="_blank" rel="noopener noreferrer" className="font-bold text-[#E6FF50] [@media(hover:hover)_and_(pointer:fine)]:hover:underline">Serotiva</a>
           </p>
         </div>
       </div>
