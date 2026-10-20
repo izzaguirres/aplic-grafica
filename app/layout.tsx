@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@vercel/analytics/next"
 import { ScrollReveal } from "@/components/ScrollReveal"
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp"
-import { GoogleTagManager } from "@/components/google-tag-manager"
+import { GoogleTagManagerNoScript, googleTagManagerBootstrap } from "@/components/google-tag-manager"
 import { AttributionCapture } from "@/components/AttributionCapture"
 import { JsonLd } from "@/components/JsonLd"
 import { absoluteUrl, createLocalBusinessSchema, siteConfig } from "@/lib/site"
@@ -18,9 +18,10 @@ import { absoluteUrl, createLocalBusinessSchema, siteConfig } from "@/lib/site"
 const gtmContainerId = process.env.NEXT_PUBLIC_GTM_ID
 
 const googleSans = localFont({
-  src: "./fonts/GoogleSansFlex.ttf",
+  src: "./fonts/GoogleSansFlex-latin.woff2",
   variable: "--font-google-sans",
   weight: "100 1000",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -103,8 +104,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" data-scroll-behavior="smooth" suppressHydrationWarning data-mrkr-delivery={process.env.VERCEL_ENV === "production" ? "gtm" : undefined}>
+      <head>
+        {gtmContainerId && (
+          <Script
+            id="gtm-script"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{ __html: googleTagManagerBootstrap(gtmContainerId) }}
+          />
+        )}
+      </head>
       <body className={`${googleSans.variable} font-sans antialiased`}>
-        <GoogleTagManager containerId={gtmContainerId} />
+        <GoogleTagManagerNoScript containerId={gtmContainerId} />
         <Script
           id="atlas-pixel"
           src="https://cdn-pixel.pixerun.com/pixel/site_821pr6lli54jv4/pixel.js"

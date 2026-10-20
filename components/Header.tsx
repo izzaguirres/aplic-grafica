@@ -86,7 +86,8 @@ export function Header() {
               src="/images/favicon.png"
               alt="Aplic Gráfica Ícone"
               fill
-              priority
+              unoptimized
+              loading="eager"
               className="object-contain"
               sizes="40px"
             />
@@ -96,7 +97,8 @@ export function Header() {
               src="/images/logo.png"
               alt="Aplic Gráfica"
               fill
-              priority
+              unoptimized
+              loading="eager"
               className="object-contain object-left"
               sizes="(max-width: 768px) 96px, 128px"
             />
