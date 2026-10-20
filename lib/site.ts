@@ -11,6 +11,7 @@ function normalizeUrl(value?: string) {
 }
 
 export const siteUrl = normalizeUrl(process.env.NEXT_PUBLIC_SITE_URL) || "https://aplicgrafica.com.br"
+const instagramUrl = "https://www.instagram.com/aplicgrafica/"
 
 export const siteConfig = {
   name: "Aplic Gráfica",
@@ -26,9 +27,10 @@ export const siteConfig = {
   phoneDisplay: "(48) 99912-8310",
   phoneE164: "+5548999128310",
   whatsappUrl: "https://wa.me/5548999128310",
+  instagramUrl,
   foundedYear: "2011",
-  // TODO: confirmar perfis oficiais e seus links visíveis antes de usar sameAs.
-  sameAs: [] as string[],
+  // TODO: confirmar o link oficial do Perfil da Empresa no Google.
+  sameAs: [instagramUrl],
   hours: {
     label: "Segunda a sexta, das 9h às 18h",
     days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],

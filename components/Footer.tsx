@@ -143,6 +143,12 @@ export function Footer() {
             <h3 className="font-semibold text-base md:text-lg">Contato</h3>
             <div className="space-y-3 md:space-y-4">
               <BusinessDetails />
+              <a href={`tel:${siteConfig.phoneE164}`} className="block text-background/80 text-xs md:text-sm underline underline-offset-4">
+                Ligar: {siteConfig.phoneDisplay}
+              </a>
+              <a href={siteConfig.instagramUrl} target="_blank" rel="noopener noreferrer" className="block text-background/80 text-xs md:text-sm underline underline-offset-4">
+                Instagram @aplicgrafica
+              </a>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
                 <a href={`mailto:${siteConfig.email}`} className="text-background/80 text-xs md:text-sm break-words">{siteConfig.email}</a>
