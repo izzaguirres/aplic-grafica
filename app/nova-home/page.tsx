@@ -137,8 +137,6 @@ export default function NovaHomePage() {
         <div data-nova-home-hero-surface className={styles.heroSurface}>
           <picture
             className={styles.heroMedia}
-            data-nova-reveal="media"
-            data-reveal-order="0"
           >
             <source
               media="(max-width: 639px)"
@@ -159,17 +157,15 @@ export default function NovaHomePage() {
 
           <div className={styles.heroCopy}>
             <h1 id="nova-home-title" className={styles.heroTitle}>
-              <span data-nova-reveal="text" data-reveal-order="0">
+              <span>
                 Gráfica rápida{" "}
               </span>
-              <span data-nova-reveal="text" data-reveal-order="1">
+              <span>
                 em Florianópolis
               </span>
             </h1>
             <p
               className={styles.heroLead}
-              data-nova-reveal="text"
-              data-reveal-order="3"
             >
               Produção própria de cartões, panfletos, adesivos, banners e mais.
               Escolha online, veja o valor e peça pelo WhatsApp.
@@ -177,8 +173,6 @@ export default function NovaHomePage() {
 
             <div
               className={styles.heroActionGroup}
-              data-nova-reveal="text"
-              data-reveal-order="4"
             >
               <div className={styles.heroButtons}>
                 <WhatsAppAction
@@ -198,8 +192,6 @@ export default function NovaHomePage() {
 
         <div
           className={styles.clientProof}
-          data-nova-reveal="text"
-          data-reveal-order="1"
         >
           <TrustedClients />
         </div>

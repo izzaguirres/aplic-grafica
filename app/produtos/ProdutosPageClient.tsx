@@ -177,33 +177,29 @@ export default function ProdutosPageClient() {
 
       <section className={styles.hero} aria-labelledby="catalog-title">
         <div className={styles.heroHeading}>
-          <p className={styles.eyebrow} data-aplic-reveal="text">
+          <p className={styles.eyebrow}>
             Catálogo de produtos
           </p>
           <h1 id="catalog-title">
-            <span data-aplic-reveal="text" data-reveal-order="1">
+            <span>
               Produtos gráficos{" "}
             </span>
-            <span data-aplic-reveal="text" data-reveal-order="2">
+            <span>
               em Florianópolis
             </span>
           </h1>
           <p
             className={styles.heroLead}
-            data-aplic-reveal="text"
-            data-reveal-order="3"
           >
             Escolha seu impresso. Veja o preço na hora. Selecione o produto e a quantidade para seguir com o orçamento no WhatsApp.
           </p>
-          <p className={styles.localContext} data-aplic-reveal="text" data-reveal-order="3">
+          <p className={styles.localContext}>
             Gráfica online com produção própria e entrega em toda Florianópolis.
           </p>
         </div>
 
         <div
           className={styles.filterPanel}
-          data-aplic-reveal="text"
-          data-reveal-order="4"
         >
           <div className={styles.searchField}>
             <Search aria-hidden="true" />

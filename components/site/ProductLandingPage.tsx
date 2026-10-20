@@ -68,9 +68,9 @@ export function ProductLandingPage({
       {singleProduct ? (
         <section className={styles.singleProduct} aria-labelledby="product-page-title">
           <header className={styles.singleHeading}>
-            <p className={styles.eyebrow} data-aplic-reveal="text">{eyebrow}</p>
-            <h1 id="product-page-title" data-aplic-reveal="text">{title}</h1>
-            <p className={styles.heroLead} data-aplic-reveal="text">{subtitle && <><strong>{subtitle}</strong>{" "}</>}{lead}</p>
+            <p className={styles.eyebrow}>{eyebrow}</p>
+            <h1 id="product-page-title">{title}</h1>
+            <p className={styles.heroLead}>{subtitle && <><strong>{subtitle}</strong>{" "}</>}{lead}</p>
           </header>
           <div id="opcoes" className={styles.singleOptions}>
             <ProductCard
@@ -78,6 +78,7 @@ export function ProductLandingPage({
               imageSrc={heroImage?.src ?? productCampaignMedia[singleProduct.id]?.src}
               imagePosition={heroImage?.position ?? productCampaignMedia[singleProduct.id]?.position}
               eagerImage
+              revealScope="none"
               layout="detail"
               conversionSource={`${analyticsSource}_product_card`}
             />
@@ -91,19 +92,19 @@ export function ProductLandingPage({
         <>
       <section className={styles.hero} aria-labelledby="product-page-title">
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow} data-aplic-reveal="text">
+          <p className={styles.eyebrow}>
             {eyebrow}
           </p>
-          <h1 id="product-page-title" data-aplic-reveal="text" data-reveal-order="1">
+          <h1 id="product-page-title">
             {title}
           </h1>
-          <p className={styles.heroLead} data-aplic-reveal="text" data-reveal-order="2">
+          <p className={styles.heroLead}>
             {subtitle && <><strong>{subtitle}</strong>{" "}</>}{lead}
           </p>
-          {qualification && <p className={styles.heroQualification} data-aplic-reveal="text" data-reveal-order="2">
+          {qualification && <p className={styles.heroQualification}>
             {qualification}
           </p>}
-          <div className={styles.heroActions} data-aplic-reveal="text" data-reveal-order="3">
+          <div className={styles.heroActions}>
             <WhatsAppAction
               label="Pedir orçamento"
               source={`${analyticsSource}_hero`}
@@ -120,13 +121,13 @@ export function ProductLandingPage({
               </Link>
             )}
           </div>
-          <p className={styles.proof} data-aplic-reveal="text" data-reveal-order="4">
+          <p className={styles.proof}>
             <MapPin aria-hidden="true" />
             {proof}
           </p>
         </div>
 
-        <div className={styles.heroVisual} data-aplic-reveal="media">
+        <div className={styles.heroVisual}>
           {heroImage ? (
             <img
               src={heroImage.src}
