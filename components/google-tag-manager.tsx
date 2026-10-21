@@ -3,7 +3,8 @@ interface GoogleTagManagerProps {
 }
 
 export function googleTagManagerBootstrap(containerId: string) {
-  return `(function(w,d,s,l,i){w[l]=w[l]||[];var started=false;
+  return `(function(w,d,s,l,i){w[l]=w[l]||[];w.__aplicGtmContainers=w.__aplicGtmContainers||{};
+if(w.__aplicGtmContainers[i])return;w.__aplicGtmContainers[i]=true;var started=false;
 function load(){if(started)return;started=true;
 w.removeEventListener('load',load);d.removeEventListener('pointerdown',load,true);d.removeEventListener('keydown',load,true);d.removeEventListener('click',load,true);
 w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});

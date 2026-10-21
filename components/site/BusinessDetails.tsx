@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site";
+import { BusinessWhatsAppLink } from "./BusinessWhatsAppLink";
 import styles from "./business-details.module.css";
 
 export function BusinessDetails() {
@@ -8,7 +9,7 @@ export function BusinessDetails() {
       <strong>{siteConfig.name}</strong>
       <span>Gráfica online com produção própria.</span>
       <span>Atendimento em toda {location.city}.</span>
-      <a href={siteConfig.whatsappUrl}>WhatsApp {siteConfig.phoneDisplay}</a>
+      <BusinessWhatsAppLink />
       <span>{hours.label}</span>
       <span>{siteConfig.onlineServiceNote}</span>
     </div>

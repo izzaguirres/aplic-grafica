@@ -19,7 +19,7 @@ export const useWhatsAppConversion = () => {
     product?: string,
     details: WhatsAppConversionDetails = {},
   ) => {
-    const whatsappUrl = buildWhatsAppUrl(message)
+    const whatsappUrl = buildWhatsAppUrl(message, product, window.location.pathname)
 
     trackWhatsAppClick(source, product, whatsappUrl, details)
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')

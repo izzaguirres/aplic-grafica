@@ -6,6 +6,8 @@ Desde o release de 06/10/2026, o mrkr é entregue pelo contêiner GTM existente.
 
 `NEXT_PUBLIC_GTM_ID` habilita o contêiner no layout. Deixe essa variável vazia no desenvolvimento quando não precisar testar GTM. Atlas/Pixerun tem carregador próprio e não é desativado por essa escolha.
 
+O bootstrap local apenas prepara a fila `dataLayer` e os listeners. O download do GTM começa no primeiro `window.load`, `pointerdown`, `keydown` ou `click` (o que ocorrer antes); se o documento já terminou de carregar, começa imediatamente. Um registro global por ID de contêiner impede nova instalação mesmo se o bootstrap executar duas vezes. GA4 e Google Ads devem continuar entregues somente pelo GTM, sem um segundo carregador direto; a configuração das tags na conta não é alterada por este código.
+
 ## Atlas / Pixerun
 
 A tag `site_821pr6lli54jv4` é carregada uma única vez pelo `next/script` no layout raiz, com estratégia `afterInteractive`. O script do fornecedor acompanha navegações internas e cliques em links de WhatsApp; não adicionamos um disparo manual duplicado.
@@ -34,6 +36,10 @@ E acrescenta contexto para análise sem alterar o valor da conversão do Google 
 - `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `gclid`, `fbclid` e `msclkid`, quando disponíveis
 
 `product_price` e `product_currency` são deliberadamente diferentes de `value` e `currency`. Assim, os valores mostrados no catálogo enriquecem a leitura do clique sem transformar o valor do produto em valor de conversão no Ads.
+
+`product` usa o produto explícito do card; sem ele, usa a família da página atual de produto, inclusive nos CTAs de header, footer e WhatsApp flutuante. Fora dessas páginas, recebe `Orçamento geral`. A mensagem começa com `Vim pelo site – <origem>.`: produto explícito, família da página ou nome da página (Home, Catálogo, Contato etc.). O restante da mensagem, incluindo quantidade e preço, é preservado. O telefone em BusinessDetails mantém um link real, com prefill e um evento no clique; a navegação nativa abre uma nova aba com `noopener noreferrer`, sem uma segunda chamada a `window.open`. A página de origem permanece aberta para o GTM consumir o evento mesmo no primeiro clique antes do download da tag terminar.
+
+Validação focal local: `node scripts/test-whatsapp-tracking.mjs`. O teste cobre rotas, produto explícito, acentos, quantidade/preço, atribuição, uma emissão por ativação, link nativo e bootstrap adiado com execução duplicada. Ele não comprova publicação de tags ou recebimento nas contas GA4/Ads.
 
 ## Atribuição
 
