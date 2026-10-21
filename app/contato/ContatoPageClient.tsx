@@ -44,16 +44,16 @@ export default function ContatoPageClient() {
     <AplicPageShell className={styles.page}>
       <section className={styles.hero} aria-labelledby="contact-title">
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow} data-aplic-reveal="text">
+          <p className={styles.eyebrow}>
             Fale com a Aplic
           </p>
-          <h1 id="contact-title" data-aplic-reveal="text" data-reveal-order="1">
+          <h1 id="contact-title">
             Como podemos ajudar?
           </h1>
-          <p data-aplic-reveal="text" data-reveal-order="2">
+          <p>
             Orçamento, envio de arte ou acompanhamento: escolha o assunto e fale com a equipe pelo WhatsApp.
           </p>
-          <div className={styles.serviceFacts} data-aplic-reveal="text" data-reveal-order="4">
+          <div className={styles.serviceFacts}>
             <span><Clock3 aria-hidden="true" />{siteConfig.hours.label}</span>
             <span><MapPin aria-hidden="true" />Atendimento em toda {siteConfig.location.city}</span>
           </div>
@@ -87,7 +87,7 @@ export default function ContatoPageClient() {
         </div>
       </section>
 
-        <div className={styles.heroMedia} data-aplic-reveal="media">
+        <div className={styles.heroMedia}>
           <Image
             src="/images/campanha/hero-adesivo-faz-propaganda.webp"
             alt="Adesivo da campanha Faz Propaganda sendo aplicado"

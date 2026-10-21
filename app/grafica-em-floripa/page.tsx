@@ -32,15 +32,15 @@ export default function GraficaEmFloripaPage() {
       <AplicPageShell className={styles.page}>
         <section className={styles.hero} aria-labelledby="areas-page-title">
           <div className={styles.heroCopy}>
-            <p className={styles.eyebrow} data-aplic-reveal="text">Áreas atendidas</p>
-            <h1 id="areas-page-title" data-aplic-reveal="text" data-reveal-order="1">Atendemos toda Florianópolis</h1>
-            <p className={styles.heroLead} data-aplic-reveal="text" data-reveal-order="2">
+            <p className={styles.eyebrow}>Áreas atendidas</p>
+            <h1 id="areas-page-title">Atendemos toda Florianópolis</h1>
+            <p className={styles.heroLead}>
               Gráfica online com produção própria. Escolha seu produto no site, peça pelo WhatsApp e combine a entrega do seu material.
             </p>
-            <p className={styles.heroQualification} data-aplic-reveal="text" data-reveal-order="2">
+            <p className={styles.heroQualification}>
               {siteConfig.onlineServiceNote}
             </p>
-            <div className={styles.heroActions} data-aplic-reveal="text" data-reveal-order="3">
+            <div className={styles.heroActions}>
               <WhatsAppAction
                 label="Pedir orçamento"
                 source="lp_floripa_hero"
@@ -52,7 +52,7 @@ export default function GraficaEmFloripaPage() {
               <Link className={styles.secondaryAction} href="/produtos">Catálogo <ArrowUpRight aria-hidden="true" /></Link>
             </div>
           </div>
-          <div className={styles.heroVisual} data-aplic-reveal="media">
+          <div className={styles.heroVisual}>
             <Image src="/images/campanha/hero-adesivo-faz-propaganda.webp" alt="Material impresso da campanha Faz Propaganda produzido pela Aplic" width={1122} height={1402} priority />
           </div>
         </section>

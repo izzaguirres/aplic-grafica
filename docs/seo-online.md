@@ -8,6 +8,6 @@ A Aplic é uma gráfica online com produção própria e entrega em toda Florian
 
 - **TODO — prazo de entrega:** confirmar as condições antes de divulgar uma estimativa. O prazo de produção de um produto não é o prazo de entrega.
 - **TODO — custo de entrega:** confirmar valores e critérios antes de publicar frete ou gratuidade.
-- **TODO — sameAs:** confirmar os perfis oficiais e os links visíveis no site antes de incluir no schema.
+- **TODO — Perfil da Empresa no Google:** Léo informou em 20/10/2026 que o perfil está indisponível publicamente. As capturas confirmam desativação por diretrizes, sem causa específica informada. Diagnosticar e confirmar a regularização antes de incluir o link no schema. O Instagram `@aplicgrafica`, já registrado no README, está no rodapé e em `sameAs`.
 
 Enquanto essas condições não forem confirmadas, o site orienta a consultar prazo e custo da entrega no atendimento. Nenhum valor ou prazo de entrega foi criado.

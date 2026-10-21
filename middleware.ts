@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
       "https://pagead2.googlesyndication.com " +
       "https://googleads.g.doubleclick.net " +
       "https://www.google.com " +
-      "https://www.clarity.ms; " +
+      "https://*.clarity.ms; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com https://tagmanager.google.com; " +
     "img-src 'self' data: https:; " +
     "font-src 'self' data: https://fonts.gstatic.com; " +

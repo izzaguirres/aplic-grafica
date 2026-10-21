@@ -33,6 +33,8 @@ export function TrustedClients() {
               src={client.logo}
               alt={client.name}
               title={client.name}
+              loading="lazy"
+              decoding="async"
               className="h-20 md:h-24 w-auto max-w-[260px] object-contain grayscale opacity-80 shrink-0"
             />
           ))}

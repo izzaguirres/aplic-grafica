@@ -1,5 +1,5 @@
 import { getConversionAttribution } from "@/lib/attribution"
-import type { WhatsAppConversionDetails } from "@/lib/whatsapp-conversion"
+import { resolveWhatsAppContext, type WhatsAppConversionDetails } from "@/lib/whatsapp-conversion"
 
 declare global {
   interface Window {
@@ -36,6 +36,8 @@ export const useAnalytics = () => {
     details: WhatsAppConversionDetails = {},
   ) => {
     const attribution = getConversionAttribution()
+    const pathname = typeof window !== 'undefined' ? window.location.pathname : undefined
+    const context = resolveWhatsAppContext(product, pathname)
 
     push({
       event: 'whatsapp_click',
@@ -44,7 +46,7 @@ export const useAnalytics = () => {
       conversion_source: source,
       conversion_scope: details.scope ?? 'general_quote',
       conversion_context: details.context ?? null,
-      product: product ?? null,
+      product: context.product,
       product_id: details.productId ?? null,
       product_variant: details.variant ?? null,
       product_quantity: details.quantity ?? null,
@@ -52,7 +54,7 @@ export const useAnalytics = () => {
       product_currency: typeof details.price === 'number' ? 'BRL' : null,
       whatsapp_url: whatsappUrl,
       page_location: typeof window !== 'undefined' ? window.location.href : undefined,
-      page_path: typeof window !== 'undefined' ? window.location.pathname : undefined,
+      page_path: pathname,
       page_title: typeof document !== 'undefined' ? document.title : undefined,
       ...attribution,
     })
