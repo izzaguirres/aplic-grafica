@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import { FaqAccordion } from "@/components/nova-home/FaqAccordion";
 import { WhatsAppAction } from "@/components/nova-home/NovaHomeActions";
 import { AplicPageShell } from "@/components/site/AplicPageShell";
 import { ProductLinks } from "@/components/site/ProductLinks";
 import { ServiceAreas } from "@/components/site/ServiceAreas";
+import { TrustedClients } from "@/components/TrustedClients";
 import { createPageMetadata, createServicePageSchema, siteConfig } from "@/lib/site";
 import styles from "@/components/site/product-landing-page.module.css";
 
@@ -22,6 +22,35 @@ const faqs = [
   { question: "Vocês imprimem na hora?", answer: "A produção é feita por encomenda. Cada pedido tem prazo definido conforme produto, quantidade e arquivo." },
 ];
 
+// Faixa sem preço e sem link por produto: esta página é o destino dos anúncios do Google Ads.
+// Prazos conferidos em lib/products-data.ts (3 dias úteis no cartão brilho total, panfleto A6 1.000 un., banner e etiquetas).
+const printedItems = [
+  {
+    name: "Cartão de visita",
+    detail: "Couchê 300g, com brilho total ou fosco com verniz localizado.",
+    image: "/images/produtos/2026/cartao-brilho-total.webp",
+    alt: "Cartões de visita impressos com acabamento brilho",
+  },
+  {
+    name: "Panfletos e folders",
+    detail: "A5, A6 e folder em couchê, frente e verso. Para delivery, evento e divulgação.",
+    image: "/images/produtos/2026/panfleto-a5-flex-v1.webp",
+    alt: "Panfletos impressos em papel couchê",
+  },
+  {
+    name: "Banner em lona",
+    detail: "Lona fosca com acabamento combinado conforme o uso. Para fachada, evento e vitrine.",
+    image: "/images/produtos/2026/banner-lona-madeira-corda.webp",
+    alt: "Banner em lona com acabamento em madeira e corda",
+  },
+  {
+    name: "Etiquetas adesivas",
+    detail: "Impressão digital com corte. Para rótulo, embalagem e produto artesanal.",
+    image: "/images/produtos/2026/etiqueta-redonda-limpa-v2.webp",
+    alt: "Etiqueta adesiva redonda aplicada em embalagem",
+  },
+];
+
 export const metadata: Metadata = createPageMetadata({ title, description, path: "/grafica-em-floripa" });
 const pageSchema = createServicePageSchema({ path: "/grafica-em-floripa", name: title, description, serviceType: "Serviços gráficos online com entrega em Florianópolis", faqs });
 
@@ -32,28 +61,63 @@ export default function GraficaEmFloripaPage() {
       <AplicPageShell className={styles.page}>
         <section className={styles.hero} aria-labelledby="areas-page-title">
           <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>Áreas atendidas</p>
-            <h1 id="areas-page-title">Atendemos toda Florianópolis</h1>
+            <p className={styles.eyebrow}>Gráfica online · Florianópolis</p>
+            <h1 id="areas-page-title">Gráfica em Florianópolis com entrega no seu endereço</h1>
             <p className={styles.heroLead}>
-              Gráfica online com produção própria. Escolha seu produto no site, peça pelo WhatsApp e combine a entrega do seu material.
+              Cartões, panfletos, banners e etiquetas com produção própria. Você envia a arte pelo WhatsApp, aprova o orçamento e recebe o material onde estiver.
             </p>
             <p className={styles.heroQualification}>
               {siteConfig.onlineServiceNote}
             </p>
             <div className={styles.heroActions}>
               <WhatsAppAction
-                label="Pedir orçamento"
+                label="Pedir orçamento no WhatsApp"
                 source="lp_floripa_hero"
                 message="Olá! Quero um orçamento de impressos com entrega em Florianópolis."
                 scope="general_quote"
                 context="service_areas"
                 tone="lime"
               />
-              <Link className={styles.secondaryAction} href="/produtos">Catálogo <ArrowUpRight aria-hidden="true" /></Link>
+              <a className={styles.secondaryAction} href="#o-que-imprimimos">Ver o que imprimimos <ArrowDown aria-hidden="true" /></a>
             </div>
           </div>
           <div className={styles.heroVisual}>
             <Image src="/images/campanha/hero-adesivo-faz-propaganda.webp" alt="Material impresso da campanha Faz Propaganda produzido pela Aplic" width={1122} height={1402} priority />
+          </div>
+        </section>
+        <section id="o-que-imprimimos" className={styles.printed} aria-labelledby="printed-title">
+          <div className={styles.sectionHeading} data-aplic-reveal="text">
+            <p className={styles.eyebrow}>O que imprimimos</p>
+            <h2 id="printed-title">Do cartão de visita ao banner.</h2>
+            <p>Os impressos mais pedidos na Aplic. Escolha o material, envie sua arte e receba pelo WhatsApp o orçamento com prazo e entrega confirmados.</p>
+          </div>
+          <ul className={styles.printedList} aria-label="Impressos produzidos pela Aplic">
+            {printedItems.map((item) => (
+              <li key={item.name} className={styles.printedItem}>
+                <div className={styles.printedMedia}>
+                  <Image src={item.image} alt={item.alt} width={1448} height={1086} sizes="(max-width: 639px) 78vw, (max-width: 1100px) 45vw, 22vw" />
+                </div>
+                <div className={styles.printedCopy}>
+                  <h3>{item.name}</h3>
+                  <p>{item.detail}</p>
+                  <span>A partir de 3 dias úteis</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className={styles.printedAction}>
+            <WhatsAppAction
+              label="Pedir orçamento no WhatsApp"
+              source="lp_floripa_products"
+              message="Olá! Quero um orçamento."
+              scope="general_quote"
+              context="service_areas_products"
+              tone="lime"
+            />
+            <p>Também fazemos crachás, pastas com bolso, blocos e receituários. É só pedir no mesmo WhatsApp.</p>
+          </div>
+          <div className={styles.printedProof}>
+            <TrustedClients />
           </div>
         </section>
         <ServiceAreas showDetailsLink={false} />
