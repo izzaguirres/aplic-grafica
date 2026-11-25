@@ -19,8 +19,8 @@ const pageSchema = createServicePageSchema({ path: "/cracha", name: "Crachá emp
 export default function CrachaPage() {
   return <><JsonLd data={pageSchema} /><ProductLandingPage
     eyebrow="Crachá empresarial"
-    title="Sua equipe identificada com a sua marca."
-    lead="Personalize nomes, cargos e fotos. Nós organizamos o layout, enviamos para aprovação e produzimos com cordão incluso."
+    title="Crachá empresarial em Florianópolis"
+    lead="Sua equipe identificada com a sua marca. Personalize nomes, cargos e fotos. Nós organizamos o layout, enviamos para aprovação e produzimos com cordão incluso."
     heroImage={{ src: "/images/campanha/produtos/cracha.webp", alt: "Crachá empresarial da campanha Faz Propaganda", position: "50% 50%" }}
     products={products}
     productsTitle="Escolha a quantidade da sua equipe."

@@ -21,7 +21,7 @@ export function TrustedClients() {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <p className="text-center text-[11px] font-medium text-[#28282D]/50 uppercase tracking-[0.22em] mb-8">
+      <p className="text-center text-[11px] font-medium text-[#28282D]/70 uppercase tracking-[0.22em] mb-8">
         Empresas que confiam em nós
       </p>
       <div className="ticker-mask overflow-hidden">
@@ -31,7 +31,9 @@ export function TrustedClients() {
             <img
               key={`${client.name}-${i}`}
               src={client.logo}
-              alt={client.name}
+              // A segunda volta do letreiro é cópia visual: leitor de tela lê cada cliente uma vez.
+              alt={i < clients.length ? client.name : ""}
+              aria-hidden={i < clients.length ? undefined : true}
               title={client.name}
               loading="lazy"
               decoding="async"

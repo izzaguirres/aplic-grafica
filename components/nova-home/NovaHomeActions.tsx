@@ -1,5 +1,6 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import { ArrowDown, ArrowUpRight, MessageCircle } from "lucide-react"
 import { useAnalytics } from "@/hooks/use-analytics"
 import { useWhatsAppConversion } from "@/hooks/use-whatsapp-conversion"
@@ -55,23 +56,22 @@ export function WhatsAppAction({
   scope = "general_quote",
   context,
 }: WhatsAppActionProps) {
-  const { handleWhatsAppClick } = useWhatsAppConversion()
-  const conversion = { message, source, product, scope, context }
+  const pathname = usePathname()
+  const { getWhatsAppLinkProps } = useWhatsAppConversion()
+  const conversion = { message, source, product, scope, context, pathname }
+  const linkProps = getWhatsAppLinkProps(message, source, product, { scope, context }, pathname)
 
   return (
-    <button
-      type="button"
+    <a
       className={`${styles.whatsappAction} ${styles[tone]}`}
       {...getWhatsAppTrackingAttributes(conversion)}
-      onClick={() =>
-        handleWhatsAppClick(message, source, product, { scope, context })
-      }
+      {...linkProps}
     >
       <span>
         {showLeadingIcon && <MessageCircle aria-hidden="true" />}
         {label}
       </span>
       <ArrowUpRight aria-hidden="true" />
-    </button>
+    </a>
   )
 }

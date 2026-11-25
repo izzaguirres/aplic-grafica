@@ -211,6 +211,8 @@
 .cta {
   display: flex;
   min-height: 2.75rem;
+  text-decoration: none;
+  cursor: pointer;
   align-items: center;
   justify-content: space-between;
   width: 100%;

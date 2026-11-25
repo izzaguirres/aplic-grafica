@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { homeFaqs as faqs } from "@/lib/home-faqs";
 import { ServiceAreas } from "@/components/site/ServiceAreas";
 import { BusinessDetails } from "@/components/site/BusinessDetails";
 import { ProductLinks } from "@/components/site/ProductLinks";
@@ -78,28 +79,6 @@ const orderSteps = [
   },
 ];
 
-const faqs = [
-  {
-    question: "Preciso ter a arte pronta?",
-    answer:
-      "O ideal é enviar a arte final. Se você tiver apenas uma referência ou precisar de um ajuste simples, a Aplic avalia isso no atendimento antes da produção.",
-  },
-  {
-    question: "O preço mostrado já é o valor do pedido?",
-    answer:
-      "O card mostra o valor da combinação escolhida. Frete, acabamentos fora do padrão ou alterações de arquivo são confirmados no orçamento antes de você aprovar.",
-  },
-  {
-    question: "Quando meu material fica pronto?",
-    answer:
-      "O prazo varia por produto e tiragem. Produtos marcados como produção rápida podem sair em até 3 dias úteis; o prazo exato é confirmado no orçamento.",
-  },
-  {
-    question: "A Aplic entrega em Florianópolis?",
-    answer:
-      "Sim. Somos uma gráfica online com produção própria e entrega em toda Florianópolis. O prazo e o custo da entrega são confirmados no atendimento pelo WhatsApp.",
-  },
-];
 
 export const metadata: Metadata = {
   title: "Nova Home · Teste Revenue-Centric",
@@ -116,7 +95,6 @@ export default function NovaHomePage() {
     <div
       data-nova-home
       data-aplic-shell
-      data-motion-ready="true"
       className={styles.page}
     >
       <noscript>
@@ -167,8 +145,8 @@ export default function NovaHomePage() {
             <p
               className={styles.heroLead}
             >
-              Produção própria de cartões, panfletos, adesivos, banners e mais.
-              Escolha online, veja o valor e peça pelo WhatsApp.
+              Gráfica online com produção própria de cartões, panfletos, adesivos e banners.
+              Veja o valor no site, peça pelo WhatsApp e receba no seu endereço.
             </p>
 
             <div

@@ -6,6 +6,8 @@
 
   display: inline-flex;
   min-height: 3.25rem;
+  text-decoration: none;
+  cursor: pointer;
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;

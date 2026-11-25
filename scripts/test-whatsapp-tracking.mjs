@@ -236,6 +236,23 @@ test('BusinessDetails first render stays organic even with a stored ad (no hydra
   assert.equal(load('lib/attribution.ts').getAdVariant(), 'A')
 })
 
+
+test('real link: organic href before hydration, ad phrase and one event on click, no window.open', () => {
+  const opened = landWithAd('?a=B')
+  const props = conversionHandlers().getWhatsAppLinkProps('Olá! Quero um orçamento.', 'mobile_sticky_bar', undefined, { scope: 'general_quote' }, '/grafica-em-floripa')
+  assert.equal(props.target, '_blank')
+  assert.equal(props.rel, 'noopener noreferrer')
+  assert.equal(decode(props.href), 'Olá! Vim pelo site (Gráfica em Floripa). Quero um orçamento.')
+  const anchor = { href: props.href }
+  props.onClick({ currentTarget: anchor })
+  assert.equal(decode(anchor.href), 'Olá! Achei a Aplic no Google. Quero um orçamento.')
+  assert.equal(window.dataLayer.length, 1)
+  assert.equal(window.dataLayer[0].event, 'whatsapp_click')
+  assert.equal(window.dataLayer[0].conversion_source, 'mobile_sticky_bar')
+  assert.equal(window.dataLayer[0].whatsapp_url, anchor.href)
+  assert.equal(opened.length, 0)
+})
+
 function bootstrapEnvironment(readyState) {
   const w = new EventTarget()
   const d = new EventTarget()

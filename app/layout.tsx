@@ -8,8 +8,7 @@ import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@vercel/analytics/next"
-import { ScrollReveal } from "@/components/ScrollReveal"
-import { FloatingWhatsApp } from "@/components/FloatingWhatsApp"
+import { MobileWhatsAppBar } from "@/components/MobileWhatsAppBar"
 import { GoogleTagManagerNoScript, googleTagManagerBootstrap } from "@/components/google-tag-manager"
 import { AttributionCapture } from "@/components/AttributionCapture"
 import { JsonLd } from "@/components/JsonLd"
@@ -123,10 +122,9 @@ export default function RootLayout({
         <AttributionCapture />
         <JsonLd data={createLocalBusinessSchema()} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <ScrollReveal />
           <Header />
           <main className="min-h-screen">{children}</main>
-          <FloatingWhatsApp />
+          <MobileWhatsAppBar />
           <Footer />
           <Analytics />
         </ThemeProvider>

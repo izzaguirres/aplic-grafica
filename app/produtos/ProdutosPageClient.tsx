@@ -114,7 +114,7 @@ const normalizeSearch = (value: string) =>
 export default function ProdutosPageClient() {
   const [searchQuery, setSearchQuery] = useState("")
   const [hasSearched, setHasSearched] = useState(false)
-  const { handleWhatsAppClick } = useWhatsAppConversion()
+  const { getWhatsAppLinkProps } = useWhatsAppConversion()
 
   const filteredProducts = useMemo(() => {
     const normalizedQuery = normalizeSearch(searchQuery)
@@ -156,6 +156,13 @@ export default function ProdutosPageClient() {
     scope: "custom_order" as const,
     context: "catalog_special_format",
   }
+  const customProjectLinkProps = getWhatsAppLinkProps(
+    customProjectMessage,
+    customProjectConversion.source,
+    undefined,
+    { scope: customProjectConversion.scope, context: customProjectConversion.context },
+    "/produtos",
+  )
 
   return (
     <div
@@ -191,7 +198,7 @@ export default function ProdutosPageClient() {
           <p
             className={styles.heroLead}
           >
-            Escolha seu impresso. Veja o preço na hora. Selecione o produto e a quantidade para seguir com o orçamento no WhatsApp.
+            Escolha seu impresso. Veja o preço ao escolher. Selecione o produto e a quantidade para seguir com o orçamento no WhatsApp.
           </p>
           <p className={styles.localContext}>
             Gráfica online com produção própria e entrega em toda Florianópolis.
@@ -327,18 +334,12 @@ export default function ProdutosPageClient() {
               formato ou acabamento personalizado.
             </p>
             <div className={styles.emptyActions}>
-              <button
-                type="button"
-                {...getWhatsAppTrackingAttributes(customProjectConversion)}
-                onClick={() => handleWhatsAppClick(
-                  customProjectMessage,
-                  customProjectConversion.source,
-                  undefined,
-                  { scope: customProjectConversion.scope, context: customProjectConversion.context },
-                )}
+              <a
+                {...getWhatsAppTrackingAttributes({ ...customProjectConversion, pathname: "/produtos" })}
+                {...customProjectLinkProps}
               >
                 Pedir orçamento personalizado
-              </button>
+              </a>
               <button type="button" className={styles.clearEmptySearch} onClick={clearFilters}>
                 Limpar busca
               </button>
@@ -365,27 +366,16 @@ export default function ProdutosPageClient() {
             maiores, cortes e acabamentos fora do catálogo.
           </p>
         </div>
-        <button
-          type="button"
+        <a
           className={styles.customProjectCta}
           data-aplic-reveal="text"
           data-reveal-order="1"
-          {...getWhatsAppTrackingAttributes(customProjectConversion)}
-          onClick={() =>
-            handleWhatsAppClick(
-              customProjectMessage,
-              customProjectConversion.source,
-              undefined,
-              {
-                scope: customProjectConversion.scope,
-                context: customProjectConversion.context,
-              },
-            )
-          }
+          {...getWhatsAppTrackingAttributes({ ...customProjectConversion, pathname: "/produtos" })}
+          {...customProjectLinkProps}
         >
           <span>Descrever meu pedido</span>
           <ArrowUpRight aria-hidden="true" />
-        </button>
+        </a>
       </section>
     </div>
   )

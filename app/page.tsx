@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import NovaHomePage from "./nova-home/page";
 import { productsData } from "@/lib/products-data";
+import { homeFaqs } from "@/lib/home-faqs";
 import { absoluteUrl, businessId, createPageMetadata, siteConfig, serviceAreas } from "@/lib/site";
 
 const homeTitle = siteConfig.title;
-const homeDescription = siteConfig.description;
+
+// Menor preço publicado do cartão de visita, para a descrição não ficar desatualizada.
+const businessCardFrom = Math.min(
+  ...productsData
+    .filter((product) => product.landingPage === "/cartao-de-visita")
+    .flatMap((product) => product.priceTable.map((item) => item.valor)),
+);
+const homeDescription = `Cartão de visita desde R$ ${businessCardFrom.toLocaleString("pt-BR")}, panfletos, banners e etiquetas com produção própria. Veja o preço, peça pelo WhatsApp e receba no Centro ou em toda Florianópolis.`;
 
 const featuredProducts = productsData
   .filter((product) => product.isFeatured)
@@ -34,6 +42,15 @@ const homeSchema = {
         serviceUrl: absoluteUrl("/contato"),
         availableLanguage: ["pt-BR"],
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${absoluteUrl("/")}#faq`,
+      mainEntity: homeFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
     },
     {
       "@type": "ItemList",

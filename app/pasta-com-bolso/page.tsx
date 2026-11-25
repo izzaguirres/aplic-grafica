@@ -19,8 +19,8 @@ const pageSchema = createServicePageSchema({ path: "/pasta-com-bolso", name: "Pa
 export default function PastaComBolsoPage() {
   return <><JsonLd data={pageSchema} /><ProductLandingPage
     eyebrow="Material corporativo"
-    title="Sua proposta chega mais organizada."
-    lead="Pasta A4 personalizada com bolso interno para contratos, apresentações e documentos que precisam carregar sua marca."
+    title="Pasta com bolso personalizada em Florianópolis"
+    lead="Sua proposta chega mais organizada. Pasta A4 com bolso interno para contratos, apresentações e documentos que precisam carregar sua marca."
     placeholderLabel="Foto de campanha da pasta em produção"
     products={products}
     productsTitle="Escolha a quantidade para sua próxima apresentação."
