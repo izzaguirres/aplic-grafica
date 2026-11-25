@@ -1,3 +1,4 @@
+import { getAdVariant } from '@/lib/attribution'
 import { useAnalytics } from './use-analytics'
 import {
   buildWhatsAppUrl,
@@ -19,7 +20,7 @@ export const useWhatsAppConversion = () => {
     product?: string,
     details: WhatsAppConversionDetails = {},
   ) => {
-    const whatsappUrl = buildWhatsAppUrl(message, product, window.location.pathname)
+    const whatsappUrl = buildWhatsAppUrl(message, product, window.location.pathname, getAdVariant())
 
     trackWhatsAppClick(source, product, whatsappUrl, details)
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')

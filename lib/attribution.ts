@@ -9,6 +9,8 @@ const attributionKeys = [
   "gclid",
   "fbclid",
   "msclkid",
+  // Variante do anúncio do Google Ads (?a=A / ?a=B), usada para a frase do WhatsApp.
+  "a",
 ] as const
 
 type AttributionKey = (typeof attributionKeys)[number]
@@ -70,4 +72,17 @@ export function captureConversionAttribution() {
 
 export function getConversionAttribution() {
   return captureConversionAttribution()
+}
+
+export type AdVariant = "A" | "B"
+
+export function normalizeAdVariant(value?: string | null): AdVariant | undefined {
+  const normalized = value?.trim().toUpperCase()
+  return normalized === "A" || normalized === "B" ? normalized : undefined
+}
+
+// Lê a variante sem gravar nada: primeiro o primeiro toque da sessão, depois a URL atual.
+export function getAdVariant(): AdVariant | undefined {
+  if (typeof window === "undefined") return undefined
+  return normalizeAdVariant(readStoredAttribution().a ?? readCurrentAttribution().a)
 }
