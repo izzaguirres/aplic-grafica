@@ -178,7 +178,7 @@ export default function NovaHomePage() {
                 <WhatsAppAction
                   label="Fazer orçamento"
                   source="nova_home_hero_cta"
-                  message="Olá! Vim pela nova página da Aplic e quero fazer um orçamento."
+                  message="Olá! Quero fazer um orçamento."
                   scope="general_quote"
                   context="home_hero"
                   tone="light"
@@ -400,7 +400,7 @@ export default function NovaHomePage() {
             <WhatsAppAction
               label="Falar com a Aplic"
               source="nova_home_final_cta"
-              message="Olá! Vim pela nova página da Aplic e quero começar um orçamento."
+              message="Olá! Quero começar um orçamento."
               scope="general_quote"
               context="home_final_cta"
               tone="light"

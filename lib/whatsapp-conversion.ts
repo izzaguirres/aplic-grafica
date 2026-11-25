@@ -1,7 +1,5 @@
+import { type AdVariant } from "@/lib/attribution"
 import { siteConfig } from "@/lib/site"
-
-export const defaultWhatsAppMessage =
-  "Olá, vim do site da Aplic Gráfica e quero um orçamento."
 
 export type WhatsAppConversionScope =
   | "general_quote"
@@ -56,10 +54,36 @@ export function resolveWhatsAppContext(product?: string, pathname?: string) {
   }
 }
 
-export function buildWhatsAppUrl(message?: string, product?: string, pathname?: string) {
-  const text = message?.trim() || defaultWhatsAppMessage
+// Frases por anúncio do Google Ads. `full` vai nos botões gerais; `opener` abre as mensagens
+// que já têm conteúdo próprio (produto, quantidade, preço), que é mantido.
+const adPhrases: Record<AdVariant, { full: string; opener: string }> = {
+  A: { full: "Oi! Vi vocês no Google e queria um orçamento.", opener: "Oi! Vi vocês no Google." },
+  B: { full: "Olá! Achei a Aplic no Google, queria fazer um orçamento.", opener: "Olá! Achei a Aplic no Google." },
+}
+
+const leadingGreeting = /^(ol[áa]|oi)\s*[!,.]?\s*/i
+
+function withoutGreeting(message: string) {
+  const body = message.replace(leadingGreeting, "").trim()
+  return body.charAt(0).toUpperCase() + body.slice(1)
+}
+
+export function buildWhatsAppText(message?: string, product?: string, pathname?: string, variant?: AdVariant) {
+  const custom = message?.trim()
   const { origin } = resolveWhatsAppContext(product, pathname)
-  return `${siteConfig.whatsappUrl}?text=${encodeURIComponent(`Vim pelo site – ${origin}.\n\n${text}`)}`
+
+  if (variant) {
+    const phrase = adPhrases[variant]
+    return custom ? `${phrase.opener} ${withoutGreeting(custom)}` : phrase.full
+  }
+
+  return custom
+    ? `Olá! Vim pelo site (${origin}). ${withoutGreeting(custom)}`
+    : `Olá! Vim pelo site (${origin}) e quero um orçamento.`
+}
+
+export function buildWhatsAppUrl(message?: string, product?: string, pathname?: string, variant?: AdVariant) {
+  return `${siteConfig.whatsappUrl}?text=${encodeURIComponent(buildWhatsAppText(message, product, pathname, variant))}`
 }
 
 export function getWhatsAppTrackingAttributes({

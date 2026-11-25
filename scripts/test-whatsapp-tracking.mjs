@@ -22,6 +22,8 @@ function load(relative) {
   }).outputText
   const localRequire = (id) => {
     if (id === 'next/navigation') return { usePathname: () => window.location.pathname }
+    // Hooks do React fora de um render: simula o primeiro render (snapshot do servidor/hidratação).
+    if (id === 'react') return { useSyncExternalStore: (_subscribe, _getSnapshot, getServerSnapshot) => getServerSnapshot() }
     if (id.startsWith('@/') || id.startsWith('.')) {
       const stem = id.startsWith('@/') ? id.slice(2) : path.join(path.dirname(relative), id)
       const resolved = [stem, `${stem}.ts`, `${stem}.tsx`].find((file) => fs.existsSync(path.join(root, file)))
@@ -80,7 +82,7 @@ for (const [pathname, label] of Object.entries(productRoutes)) {
       assert.equal(event.page_path, pathname)
       assert.equal(event.product, label)
       assert.equal(event.conversion_source, source)
-      assert.ok(decode(event.whatsapp_url).startsWith(`Vim pelo site – ${label}.\n\n`))
+      assert.equal(decode(event.whatsapp_url), `Olá! Vim pelo site (${label}) e quero um orçamento.`)
       assert.deepEqual(opened.at(-1), [event.whatsapp_url, '_blank', 'noopener,noreferrer'])
     }
     assert.equal(window.dataLayer.length, 5)
@@ -95,7 +97,7 @@ for (const [pathname, label] of Object.entries(generalRoutes)) {
     const event = window.dataLayer[0]
     assert.equal(event.product, 'Orçamento geral')
     assert.equal(event.page_path, pathname)
-    assert.ok(decode(event.whatsapp_url).startsWith(`Vim pelo site – ${label}.\n\n`))
+    assert.equal(decode(event.whatsapp_url), `Olá! Vim pelo site (${label}) e quero um orçamento.`)
   })
 }
 
@@ -116,7 +118,7 @@ test('explicit card product wins over route; accents, quantity, price and scope 
   assert.equal(event.page_path, '/cartao-de-visita')
   assert.equal('value' in event, false)
   assert.equal('currency' in event, false)
-  assert.equal(decode(event.whatsapp_url), `Vim pelo site – Folder 2 Dobras A4.\n\n${message}`)
+  assert.equal(decode(event.whatsapp_url), `Olá! Vim pelo site (Folder 2 Dobras A4). ${message.replace('Olá! ', '')}`)
   assert.equal(new URL(event.whatsapp_url).pathname, '/5548999128310')
   assert.equal(opened.length, 1)
   assert.equal(window.dataLayer.length, 1)
@@ -163,7 +165,7 @@ for (const pathname of ['/contato', '/panfleto']) {
     assert.equal(link.props['data-whatsapp-url'], link.props.href)
     assert.equal(link.props.target, '_blank')
     assert.equal(link.props.rel, 'noopener noreferrer')
-    assert.ok(decode(link.props.href).startsWith(`Vim pelo site – ${productRoutes[pathname] || generalRoutes[pathname]}.`))
+    assert.equal(decode(link.props.href), `Olá! Vim pelo site (${productRoutes[pathname] || generalRoutes[pathname]}) e quero um orçamento.`)
     link.props.onClick()
     assert.equal(window.dataLayer.length, 1)
     assert.equal(window.dataLayer[0].whatsapp_url, link.props.href)
@@ -174,8 +176,64 @@ for (const pathname of ['/contato', '/panfleto']) {
 
 test('browserless URL resolution is deterministic and whitespace-only product falls back', () => {
   delete global.window
-  assert.ok(decode(buildWhatsAppUrl()).startsWith('Vim pelo site – Site.'))
+  assert.equal(decode(buildWhatsAppUrl()), 'Olá! Vim pelo site (Site) e quero um orçamento.')
   assert.equal(resolveWhatsAppContext('  ', '/cracha').product, 'Crachá')
+})
+
+
+function landWithAd(search, landingPath = '/grafica-em-floripa') {
+  const opened = browser(landingPath)
+  window.location.search = search
+  window.location.href += search
+  load('lib/attribution.ts').captureConversionAttribution()
+  window.location = { pathname: '/', search: '', href: 'https://aplicgrafica.com.br/' }
+  return opened
+}
+const adCases = {
+  A: { full: 'Oi! Vi vocês no Google e queria um orçamento.', opener: 'Oi! Vi vocês no Google.' },
+  B: { full: 'Olá! Achei a Aplic no Google, queria fazer um orçamento.', opener: 'Olá! Achei a Aplic no Google.' },
+}
+for (const [variant, phrase] of Object.entries(adCases)) {
+  test(`ad ${variant}: phrase survives navigation, one line, event unchanged`, () => {
+    const opened = landWithAd(`?a=${variant.toLowerCase()}&gclid=G`)
+    for (const source of ['header', 'floating_button', 'hero_cta']) conversionHandlers().handleWhatsAppClick(undefined, source)
+    assert.equal(window.dataLayer.length, 3)
+    assert.equal(opened.length, 3)
+    for (const event of window.dataLayer) {
+      assert.equal(event.event, 'whatsapp_click')
+      assert.equal(event.a, variant.toLowerCase())
+      assert.equal(event.landing_path, '/grafica-em-floripa')
+      assert.equal(event.page_path, '/')
+      assert.equal(decode(event.whatsapp_url), phrase.full)
+      assert.equal(decode(event.whatsapp_url).includes('\n'), false)
+    }
+  })
+  test(`ad ${variant}: product card keeps product, quantity and price after the ad opener`, () => {
+    landWithAd(`?a=${variant}`)
+    const message = 'Olá! Gostaria de um orçamento para *500 unidades* de *Cartão de visita*. Vi o valor de *R$ 245,00* no site. Podemos confirmar a arte, o prazo e a entrega?'
+    conversionHandlers().handleWhatsAppClick(message, 'product_catalog_card', 'Cartão de visita', { scope: 'catalog_product', price: 245 })
+    const event = window.dataLayer[0]
+    assert.equal(decode(event.whatsapp_url), `${phrase.opener} Gostaria de um orçamento para *500 unidades* de *Cartão de visita*. Vi o valor de *R$ 245,00* no site. Podemos confirmar a arte, o prazo e a entrega?`)
+    assert.equal(event.product_price, 245)
+    assert.equal(event.conversion_scope, 'catalog_product')
+  })
+}
+test('unknown ad value and no value keep the organic message', () => {
+  landWithAd('?a=C')
+  conversionHandlers().handleWhatsAppClick('Olá, preciso de ajuda com um pedido.', 'contact_block')
+  assert.equal(decode(window.dataLayer[0].whatsapp_url), 'Olá! Vim pelo site (Home). Preciso de ajuda com um pedido.')
+})
+test('organic custom messages lose the duplicated greeting and stay on one line', () => {
+  browser('/')
+  conversionHandlers().handleWhatsAppClick('Olá! Quero fazer um orçamento.', 'hero_cta')
+  assert.equal(decode(window.dataLayer[0].whatsapp_url), 'Olá! Vim pelo site (Home). Quero fazer um orçamento.')
+})
+test('BusinessDetails first render stays organic even with a stored ad (no hydration mismatch)', () => {
+  landWithAd('?a=A', '/contato')
+  window.location = { pathname: '/contato', search: '', href: 'https://aplicgrafica.com.br/contato' }
+  const link = BusinessWhatsAppLink()
+  assert.equal(decode(link.props.href), 'Olá! Vim pelo site (Contato) e quero um orçamento.')
+  assert.equal(load('lib/attribution.ts').getAdVariant(), 'A')
 })
 
 function bootstrapEnvironment(readyState) {
