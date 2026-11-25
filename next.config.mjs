@@ -14,6 +14,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/nova-home',
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/grafica-florianopolis',
         destination: '/grafica-em-floripa',
         permanent: true,

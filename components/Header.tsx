@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, type MouseEvent } from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import Link from "next/link"
 import Image from "next/image"
@@ -22,7 +22,7 @@ const navItems = [
 export function Header() {
   const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
-  const { handleWhatsAppClick } = useWhatsAppConversion()
+  const { getWhatsAppLinkProps } = useWhatsAppConversion()
   const [isOpen, setIsOpen] = useState(false)
   const desktopNavigationRef = useRef<HTMLElement>(null)
   const isHome = pathname === "/" || pathname === "/nova-home"
@@ -122,20 +122,22 @@ export function Header() {
             </Link>
           ))}
           <Button
-            {...getWhatsAppTrackingAttributes(headerConversion)}
-            onClick={() =>
-              handleWhatsAppClick(undefined, headerConversion.source, undefined, {
-                scope: headerConversion.scope,
-                context: headerConversion.context,
-              })
-            }
+            asChild
             data-header-cta
             className="ml-4 bg-[#18181b] text-[#E6FF50] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#18181b]/90 font-bold rounded-xl shadow-md [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-lg transition-[background-color,box-shadow]"
           >
-            <span>Fazer orçamento</span>
-            <span data-header-cta-icon aria-hidden="true">
-              <ArrowUpRight />
-            </span>
+            <a
+              {...getWhatsAppTrackingAttributes({ ...headerConversion, pathname })}
+              {...getWhatsAppLinkProps(undefined, headerConversion.source, undefined, {
+                scope: headerConversion.scope,
+                context: headerConversion.context,
+              }, pathname)}
+            >
+              <span>Fazer orçamento</span>
+              <span data-header-cta-icon aria-hidden="true">
+                <ArrowUpRight />
+              </span>
+            </a>
           </Button>
         </nav>
 
@@ -199,26 +201,26 @@ export function Header() {
                   })}
                 </nav>
 
-                <button
-                  type="button"
-                  {...getWhatsAppTrackingAttributes(mobileHeaderConversion)}
-                  onClick={() => {
-                    handleWhatsAppClick(
-                      undefined,
-                      mobileHeaderConversion.source,
-                      undefined,
-                      {
-                        scope: mobileHeaderConversion.scope,
-                        context: mobileHeaderConversion.context,
+                <a
+                  {...getWhatsAppTrackingAttributes({ ...mobileHeaderConversion, pathname })}
+                  {...(() => {
+                    const link = getWhatsAppLinkProps(undefined, mobileHeaderConversion.source, undefined, {
+                      scope: mobileHeaderConversion.scope,
+                      context: mobileHeaderConversion.context,
+                    }, pathname)
+                    return {
+                      ...link,
+                      onClick: (event: MouseEvent<HTMLAnchorElement>) => {
+                        link.onClick(event)
+                        setIsOpen(false)
                       },
-                    )
-                    setIsOpen(false)
-                  }}
+                    }
+                  })()}
                   className={mobileMenuStyles.cta}
                 >
                   <span>Fazer orçamento</span>
                   <ArrowUpRight aria-hidden="true" />
-                </button>
+                </a>
               </DialogPrimitive.Content>
             </DialogPrimitive.Portal>
           </DialogPrimitive.Root>

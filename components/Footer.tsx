@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { MessageCircle, Mail, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -10,7 +11,8 @@ import { getYearsInBusiness, siteConfig } from "@/lib/site"
 import { getWhatsAppTrackingAttributes } from "@/lib/whatsapp-conversion"
 
 export function Footer() {
-  const { handleWhatsAppClick } = useWhatsAppConversion()
+  const pathname = usePathname()
+  const { getWhatsAppLinkProps } = useWhatsAppConversion()
   const years = getYearsInBusiness()
   const footerConversion = {
     source: "footer",
@@ -38,25 +40,23 @@ export function Footer() {
                 />
               </div>
             </div>
-            <p className="text-background/80 leading-relaxed max-w-md text-sm md:text-base">
+            <p suppressHydrationWarning className="text-background/80 leading-relaxed max-w-md text-sm md:text-base">
               Gráfica online com produção própria e {years} anos de mercado.
               Orçamento pelo WhatsApp e entrega em toda Florianópolis.
             </p>
-            <Button 
-              data-footer-whatsapp
-              {...getWhatsAppTrackingAttributes(footerConversion)}
-              onClick={() =>
-                handleWhatsAppClick(undefined, footerConversion.source, undefined, {
+            <Button asChild variant="secondary" className="font-medium">
+              <a
+                data-footer-whatsapp
+                {...getWhatsAppTrackingAttributes({ ...footerConversion, pathname })}
+                {...getWhatsAppLinkProps(undefined, footerConversion.source, undefined, {
                   scope: footerConversion.scope,
                   context: footerConversion.context,
-                })
-              }
-              variant="secondary" 
-              className="font-medium"
-            >
-              <MessageCircle className="mr-2 h-4 w-4" />
-              Falar no WhatsApp
-              <ArrowRight className="ml-2 h-4 w-4" />
+                }, pathname)}
+              >
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Falar no WhatsApp
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </Button>
           </div>
 

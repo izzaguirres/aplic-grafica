@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock3, Zap } from "lucide-react";
@@ -70,7 +71,8 @@ export function ProductCard({
   layout = "card",
   showDetailsLink = true,
 }: ProductCardProps) {
-  const { handleWhatsAppClick } = useWhatsAppConversion();
+  const pathname = usePathname();
+  const { getWhatsAppLinkProps } = useWhatsAppConversion();
   const selectorId = useId();
   const Title = headingLevel;
   const [selectedPriceIndex, setSelectedPriceIndex] = useState(0);
@@ -236,24 +238,21 @@ export function ProductCard({
             Frete, serviços de arte e prazo final confirmados no orçamento.
           </p>
 
-          <button
-            type="button"
+          <a
             className={styles.cta}
-            {...getWhatsAppTrackingAttributes(conversion)}
-            onClick={() =>
-              handleWhatsAppClick(message, conversionSource, product.name, {
-                scope: conversion.scope,
-                context: conversion.context,
-                productId: conversion.productId,
-                variant: conversion.variant,
-                quantity: conversion.quantity,
-                price: conversion.price,
-              })
-            }
+            {...getWhatsAppTrackingAttributes({ ...conversion, pathname })}
+            {...getWhatsAppLinkProps(message, conversionSource, product.name, {
+              scope: conversion.scope,
+              context: conversion.context,
+              productId: conversion.productId,
+              variant: conversion.variant,
+              quantity: conversion.quantity,
+              price: conversion.price,
+            }, pathname)}
           >
             <span>Pedir orçamento</span>
             <ArrowUpRight aria-hidden="true" />
-          </button>
+          </a>
         </div>
       </div>
     </article>

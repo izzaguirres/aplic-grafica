@@ -148,7 +148,7 @@ export const productsData: Product[] = [
     image: "/images/produtos/2026/panfleto-10x14-flex-v5.webp",
     category: "Promocional",
     isFeatured: true,
-    badge: "MELHOR CUSTO",
+    badge: "MAIS ECONÔMICO",
     featuredOrder: 2,
     landingPage: "/panfleto",
     priceTable: [
